@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIP-C01 · In-Scope AWS Services</title>
+<style>
+  :root{
+    --ink:#16283d; --sub:#4a6180; --line:#dbe3ec; --bg:#fbfcfe;
+    --accent:#1f5c9e; --accent-bg:#edf3fa;
+    --ml:#7a3ea8; --ml-bg:#f3edfa;
+    --svc-ink:#16283d;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.4; font-size:11.5px; padding:20px;}
+  .wrap{max-width:1240px;margin:0 auto;}
+  header.top{border-bottom:3px solid var(--ink); padding-bottom:10px; margin-bottom:14px;
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:8px;}
+  header.top h1{font-size:21px; letter-spacing:-.3px;}
+  header.top h1 span{color:var(--accent);}
+  header.top .meta{font-size:10.5px; color:var(--sub); text-align:right; line-height:1.5;}
+  .badge{display:inline-block; background:var(--ink); color:#fff; font-size:10.5px;
+    font-weight:700; padding:2px 9px; border-radius:20px;}
+  .cat{border:1px solid var(--line); border-radius:8px; background:#fff;
+    margin-bottom:12px; overflow:hidden; break-inside:avoid; page-break-inside:avoid;}
+  .cat > h2{font-size:12.5px; background:var(--accent-bg); color:var(--accent);
+    padding:6px 10px; border-bottom:1px solid var(--line); display:flex; align-items:center; gap:8px;}
+  .cat.ml > h2{background:var(--ml-bg); color:var(--ml);}
+  .cat > h2 .star{font-size:10px; background:var(--ml); color:#fff; padding:1px 7px; border-radius:20px; font-weight:700;}
+  table{width:100%; border-collapse:collapse;}
+  td{padding:4px 10px; border-bottom:1px solid #eef2f6; vertical-align:top;}
+  tr:last-child td{border-bottom:none;}
+  td.name{width:230px; font-weight:700; color:var(--svc-ink); white-space:nowrap;}
+  .cat.ml td.name{color:var(--ml);}
+  td.desc{color:#33475b;}
+  .hot{display:inline-block; width:6px; height:6px; border-radius:50%; background:#d97706; margin-left:5px; vertical-align:middle;}
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:12px; align-items:start;}
+  .legend{font-size:10px; color:var(--sub); margin-bottom:12px;}
+  .legend .hot{margin:0 3px 0 8px;}
+  .foot{margin-top:12px; padding-top:9px; border-top:1px solid var(--line);
+    font-size:10px; color:var(--sub); text-align:center;}
+  @media print{ body{padding:0; font-size:9.5px;} @page{margin:.7cm;} td.name{width:200px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>AIP-C01 · <span>In-Scope AWS Services</span></h1>
+  <div class="meta">
+    <strong>Quick glossary — what each service is</strong> · <span class="badge">reference</span><br>
+    Machine Learning category is the heart of this exam
+  </div>
+</header>
+
+<div class="legend">
+  <span class="hot"></span> orange dot = appears very frequently in exam scenarios · &nbsp; purple category = Machine Learning (highest yield)
+</div>
+
+<!-- MACHINE LEARNING (put first - most important) -->
+<div class="cat ml">
+  <h2>Machine Learning <span class="star">core of the exam</span></h2>
+  <table>
+    <tr><td class="name">Amazon Bedrock <span class="hot"></span></td><td class="desc">Managed access to foundation models (Claude, Titan, Llama, Nova) via one API; hub for RAG, agents, guardrails, evaluation.</td></tr>
+    <tr><td class="name">Bedrock AgentCore</td><td class="desc">Runtime/infrastructure for building and running production agentic AI (memory, tools, orchestration).</td></tr>
+    <tr><td class="name">Bedrock Knowledge Bases <span class="hot"></span></td><td class="desc">Managed RAG — ingest docs, chunk, embed, store vectors, retrieve; RetrieveAndGenerate returns answers + citations.</td></tr>
+    <tr><td class="name">Bedrock Prompt Management <span class="hot"></span></td><td class="desc">Store/version prompt templates with <code>{{variables}}</code>, approval workflows; IAM controls who edits/publishes.</td></tr>
+    <tr><td class="name">Bedrock Prompt Flows</td><td class="desc">No-code builder for sequential prompt chains with conditional branching and pre/post-processing.</td></tr>
+    <tr><td class="name">Amazon Comprehend <span class="hot"></span></td><td class="desc">NLP service — sentiment, entities, key phrases, language, and PII detection in text.</td></tr>
+    <tr><td class="name">Amazon Kendra</td><td class="desc">Intelligent enterprise search over documents using natural-language queries.</td></tr>
+    <tr><td class="name">Amazon Lex</td><td class="desc">Build conversational chatbots/voice bots (intents, slots) — powers Alexa-style dialog.</td></tr>
+    <tr><td class="name">Amazon Q Business <span class="hot"></span></td><td class="desc">Managed GenAI assistant over enterprise data; RBAC via IAM Identity Center + connectors, minimal ops.</td></tr>
+    <tr><td class="name">Amazon Q Business Apps</td><td class="desc">Purpose-built lightweight apps built on top of Q Business.</td></tr>
+    <tr><td class="name">Amazon Q Developer</td><td class="desc">AI coding assistant — generate/refactor code, API help, test and optimize.</td></tr>
+    <tr><td class="name">Amazon Rekognition</td><td class="desc">Image/video analysis — object detection, celebrity recognition, moderation. (Images, never text PII.)</td></tr>
+    <tr><td class="name">Amazon SageMaker AI <span class="hot"></span></td><td class="desc">End-to-end ML platform — train, tune, deploy, host endpoints (real-time / async / batch / serverless).</td></tr>
+    <tr><td class="name">SageMaker Clarify</td><td class="desc">Detect bias and class imbalance in data/models; explainability (feature importance).</td></tr>
+    <tr><td class="name">SageMaker Data Wrangler</td><td class="desc">Low-code data prep — clean, transform, normalize tabular/text data for ML.</td></tr>
+    <tr><td class="name">SageMaker Ground Truth</td><td class="desc">Data labeling service to build training datasets (GT Plus = AWS-managed workforce).</td></tr>
+    <tr><td class="name">SageMaker JumpStart</td><td class="desc">Prebuilt models and solution templates you can deploy/fine-tune quickly.</td></tr>
+    <tr><td class="name">SageMaker Model Monitor</td><td class="desc">Monitor deployed models for data/quality/drift against a baseline; needs custom container for embeddings.</td></tr>
+    <tr><td class="name">SageMaker Model Registry</td><td class="desc">Version, catalog and manage model deployment + rollback.</td></tr>
+    <tr><td class="name">SageMaker Neo</td><td class="desc">Compile/optimize models to run faster on target hardware.</td></tr>
+    <tr><td class="name">SageMaker Processing</td><td class="desc">Run data processing / feature engineering / batch jobs on managed compute.</td></tr>
+    <tr><td class="name">SageMaker Unified Studio</td><td class="desc">Single IDE unifying data, analytics and AI development.</td></tr>
+    <tr><td class="name">Amazon Augmented AI (A2I) <span class="hot"></span></td><td class="desc">Human-in-the-loop review of AI-generated <b>output/predictions</b>; feeds corrections back for retraining.</td></tr>
+    <tr><td class="name">Amazon Textract</td><td class="desc">Extract text, forms, tables (and Queries) from scanned documents/PDFs.</td></tr>
+    <tr><td class="name">Amazon Titan</td><td class="desc">Amazon's own FM family (text, embeddings) available in Bedrock.</td></tr>
+    <tr><td class="name">Amazon Transcribe</td><td class="desc">Speech-to-text; Transcribe Medical for clinical audio.</td></tr>
+    <tr><td class="name">Bedrock Data Automation (BDA) <span class="hot"></span></td><td class="desc">Managed multimodal extraction (docs + audio + video); 1 project → many blueprints, auto-detects blueprint by type. <em>(In ML/Bedrock scope.)</em></td></tr>
+  </table>
+</div>
+
+<div class="cols">
+
+  <!-- APPLICATION INTEGRATION -->
+  <div class="cat">
+    <h2>Application Integration</h2>
+    <table>
+      <tr><td class="name">Amazon AppFlow</td><td class="desc">No-code data flows between SaaS apps and AWS.</td></tr>
+      <tr><td class="name">AWS AppConfig <span class="hot"></span></td><td class="desc">Dynamic runtime config with instant propagation — switch models/settings without redeploy.</td></tr>
+      <tr><td class="name">Amazon EventBridge <span class="hot"></span></td><td class="desc">Event bus; rules route events (e.g. S3 upload) directly to targets like Step Functions.</td></tr>
+      <tr><td class="name">Amazon SNS</td><td class="desc">Pub/sub notifications (fan-out to many subscribers).</td></tr>
+      <tr><td class="name">Amazon SQS <span class="hot"></span></td><td class="desc">Managed message queue for <b>async</b> decoupled processing (red flag for real-time).</td></tr>
+      <tr><td class="name">AWS Step Functions <span class="hot"></span></td><td class="desc">Serverless workflow orchestration; ReAct patterns, approval flows, direct service API calls.</td></tr>
+    </table>
+  </div>
+
+  <!-- COMPUTE -->
+  <div class="cat">
+    <h2>Compute</h2>
+    <table>
+      <tr><td class="name">AWS App Runner</td><td class="desc">Deploy containerized web apps/APIs without managing infra.</td></tr>
+      <tr><td class="name">Amazon EC2</td><td class="desc">Virtual servers; full control, you manage OS/scaling.</td></tr>
+      <tr><td class="name">AWS Lambda <span class="hot"></span></td><td class="desc">Serverless functions — glue logic, model invocation, routing, validation.</td></tr>
+      <tr><td class="name">Lambda@Edge</td><td class="desc">Run Lambda at CloudFront edge locations, close to users.</td></tr>
+      <tr><td class="name">AWS Outposts</td><td class="desc">AWS hardware on-premises for local/low-latency + data residency.</td></tr>
+      <tr><td class="name">AWS Wavelength</td><td class="desc">AWS compute at telco 5G edge for ultra-low latency.</td></tr>
+    </table>
+  </div>
+
+  <!-- CONTAINERS -->
+  <div class="cat">
+    <h2>Containers</h2>
+    <table>
+      <tr><td class="name">Amazon ECR</td><td class="desc">Container image registry (e.g. custom Model Monitor images).</td></tr>
+      <tr><td class="name">Amazon ECS</td><td class="desc">Container orchestration (e.g. host complex MCP servers).</td></tr>
+      <tr><td class="name">Amazon EKS</td><td class="desc">Managed Kubernetes.</td></tr>
+      <tr><td class="name">AWS Fargate</td><td class="desc">Serverless containers — no server management for ECS/EKS.</td></tr>
+    </table>
+  </div>
+
+  <!-- DATABASE -->
+  <div class="cat">
+    <h2>Database</h2>
+    <table>
+      <tr><td class="name">Amazon Aurora <span class="hot"></span></td><td class="desc">MySQL/PostgreSQL-compatible DB; <b>pgvector</b> for vector search.</td></tr>
+      <tr><td class="name">Amazon DocumentDB</td><td class="desc">Managed MongoDB-compatible document database.</td></tr>
+      <tr><td class="name">Amazon DynamoDB <span class="hot"></span></td><td class="desc">NoSQL, low-latency, scalable; TTL for auto-expiry, GSI for metadata search — ideal for conversation history.</td></tr>
+      <tr><td class="name">DynamoDB Streams</td><td class="desc">Change-data capture stream from DynamoDB tables.</td></tr>
+      <tr><td class="name">Amazon ElastiCache</td><td class="desc">In-memory cache (Redis/Memcached); MemoryDB variant for durable in-memory + vector.</td></tr>
+      <tr><td class="name">Amazon Neptune</td><td class="desc">Graph database; Neptune Analytics adds vector similarity.</td></tr>
+      <tr><td class="name">Amazon RDS</td><td class="desc">Managed relational DB (Postgres/MySQL/etc.).</td></tr>
+    </table>
+  </div>
+
+  <!-- SECURITY -->
+  <div class="cat">
+    <h2>Security, Identity &amp; Compliance</h2>
+    <table>
+      <tr><td class="name">Amazon Cognito <span class="hot"></span></td><td class="desc">User auth/identity; user pools + groups for workforce and role-based access.</td></tr>
+      <tr><td class="name">AWS Encryption SDK</td><td class="desc">Client-side encryption library.</td></tr>
+      <tr><td class="name">IAM <span class="hot"></span></td><td class="desc">Identities, roles and policies — the real mechanism for RBAC/least privilege.</td></tr>
+      <tr><td class="name">IAM Access Analyzer</td><td class="desc">Finds resources shared externally / over-permissive access.</td></tr>
+      <tr><td class="name">IAM Identity Center <span class="hot"></span></td><td class="desc">Central workforce SSO + permission sets; RBAC source for Q Business.</td></tr>
+      <tr><td class="name">AWS KMS</td><td class="desc">Managed encryption keys for data at rest.</td></tr>
+      <tr><td class="name">Amazon Macie</td><td class="desc">Discovers/classifies <b>PII in S3</b> (storage-level, not text-pipeline).</td></tr>
+      <tr><td class="name">AWS Secrets Manager</td><td class="desc">Store/rotate secrets, API keys, DB credentials.</td></tr>
+      <tr><td class="name">AWS WAF</td><td class="desc">Web app firewall — filter/rate-limit HTTP requests (e.g. ahead of API Gateway).</td></tr>
+    </table>
+  </div>
+
+  <!-- MANAGEMENT & GOVERNANCE -->
+  <div class="cat">
+    <h2>Management &amp; Governance</h2>
+    <table>
+      <tr><td class="name">AWS Auto Scaling</td><td class="desc">Scale capacity to demand automatically.</td></tr>
+      <tr><td class="name">AWS CloudTrail <span class="hot"></span></td><td class="desc">Records API activity for audit (who did what) — not prompt/response content.</td></tr>
+      <tr><td class="name">Amazon CloudWatch <span class="hot"></span></td><td class="desc">Metrics, dashboards, alarms; token usage, latency, throttling.</td></tr>
+      <tr><td class="name">CloudWatch Logs</td><td class="desc">Centralized log storage/query (Logs Insights).</td></tr>
+      <tr><td class="name">CloudWatch Synthetics</td><td class="desc">Synthetic canaries that test endpoints/workflows.</td></tr>
+      <tr><td class="name">AWS Cost Anomaly Detection</td><td class="desc">ML-based alerts on unexpected cost spikes.</td></tr>
+      <tr><td class="name">AWS Cost Explorer</td><td class="desc">Visualize and analyze AWS spend.</td></tr>
+      <tr><td class="name">Amazon Managed Grafana</td><td class="desc">Managed dashboards/visualization.</td></tr>
+      <tr><td class="name">AWS Service Catalog</td><td class="desc">Curated, approved products for self-service deployment.</td></tr>
+      <tr><td class="name">AWS Systems Manager</td><td class="desc">Ops management, automation runbooks, Parameter Store (static config).</td></tr>
+      <tr><td class="name">AWS Well-Architected Tool</td><td class="desc">Review workloads vs best practices; <b>GenAI Lens</b> for GenAI design (review, not enforcement).</td></tr>
+    </table>
+  </div>
+
+  <!-- NETWORKING -->
+  <div class="cat">
+    <h2>Networking &amp; Content Delivery</h2>
+    <table>
+      <tr><td class="name">Amazon API Gateway <span class="hot"></span></td><td class="desc">Managed API front door — request validation, streaming, rate limiting, auth.</td></tr>
+      <tr><td class="name">AWS AppSync</td><td class="desc">Managed GraphQL APIs with real-time/subscriptions.</td></tr>
+      <tr><td class="name">Amazon CloudFront</td><td class="desc">CDN for content delivery/edge caching (not a token/secret store).</td></tr>
+      <tr><td class="name">Elastic Load Balancing</td><td class="desc">Distribute traffic across targets.</td></tr>
+      <tr><td class="name">AWS Global Accelerator</td><td class="desc">Route users to optimal endpoints over the AWS network.</td></tr>
+      <tr><td class="name">AWS PrivateLink <span class="hot"></span></td><td class="desc">Private connectivity to services without public internet (interface VPC endpoints).</td></tr>
+      <tr><td class="name">Amazon Route 53</td><td class="desc">DNS and health-check routing.</td></tr>
+      <tr><td class="name">Amazon VPC <span class="hot"></span></td><td class="desc">Isolated network; VPC endpoints keep traffic off the public internet.</td></tr>
+    </table>
+  </div>
+
+  <!-- STORAGE -->
+  <div class="cat">
+    <h2>Storage</h2>
+    <table>
+      <tr><td class="name">Amazon EBS</td><td class="desc">Block storage volumes for EC2.</td></tr>
+      <tr><td class="name">Amazon EFS</td><td class="desc">Managed shared file system.</td></tr>
+      <tr><td class="name">Amazon S3 <span class="hot"></span></td><td class="desc">Object storage — data lake, docs, datasets (JSONL), model artifacts, logs.</td></tr>
+      <tr><td class="name">S3 Intelligent-Tiering</td><td class="desc">Auto-moves objects between tiers to save cost.</td></tr>
+      <tr><td class="name">S3 Lifecycle policies <span class="hot"></span></td><td class="desc">Rules to <b>expire/delete</b> (retention limit) or transition to archival — pick delete for "not retained longer than necessary".</td></tr>
+      <tr><td class="name">S3 Cross-Region Replication</td><td class="desc">Replicate objects to another Region.</td></tr>
+    </table>
+  </div>
+
+  <!-- ANALYTICS -->
+  <div class="cat">
+    <h2>Analytics</h2>
+    <table>
+      <tr><td class="name">Amazon Athena</td><td class="desc">Serverless SQL queries over data in S3.</td></tr>
+      <tr><td class="name">Amazon EMR</td><td class="desc">Managed big-data processing (Spark/Hadoop).</td></tr>
+      <tr><td class="name">AWS Glue <span class="hot"></span></td><td class="desc">Serverless ETL + Data Catalog + Data Quality; tracks data lineage.</td></tr>
+      <tr><td class="name">Amazon Kinesis</td><td class="desc">Real-time streaming data ingestion/processing.</td></tr>
+      <tr><td class="name">Amazon OpenSearch Service <span class="hot"></span></td><td class="desc">Search + vector database (k-NN, HNSW); Neural plugin integrates with Bedrock; hybrid search.</td></tr>
+      <tr><td class="name">Amazon QuickSight</td><td class="desc">BI dashboards for business/leadership reporting.</td></tr>
+      <tr><td class="name">Amazon MSK</td><td class="desc">Managed Apache Kafka streaming.</td></tr>
+    </table>
+  </div>
+
+  <!-- DEVELOPER TOOLS -->
+  <div class="cat">
+    <h2>Developer Tools</h2>
+    <table>
+      <tr><td class="name">AWS Amplify</td><td class="desc">Build/host web &amp; mobile front-ends with declarative UI.</td></tr>
+      <tr><td class="name">AWS CDK</td><td class="desc">Infrastructure as code in a programming language.</td></tr>
+      <tr><td class="name">AWS CloudFormation <span class="hot"></span></td><td class="desc">IaC templates; StackSets deploy resources (e.g. guardrails) across accounts.</td></tr>
+      <tr><td class="name">CodeArtifact</td><td class="desc">Managed artifact/package repository.</td></tr>
+      <tr><td class="name">CodeBuild</td><td class="desc">Managed CI build service.</td></tr>
+      <tr><td class="name">CodeDeploy</td><td class="desc">Automated deployment (blue/green, canary).</td></tr>
+      <tr><td class="name">CodePipeline</td><td class="desc">CI/CD orchestration pipeline.</td></tr>
+      <tr><td class="name">Kiro</td><td class="desc">Agentic AI IDE for spec-driven development.</td></tr>
+      <tr><td class="name">AWS X-Ray <span class="hot"></span></td><td class="desc">Distributed tracing across services (trace FM API calls).</td></tr>
+    </table>
+  </div>
+
+  <!-- CUSTOMER ENGAGEMENT + MIGRATION -->
+  <div class="cat">
+    <h2>Customer Engagement · Migration &amp; Transfer</h2>
+    <table>
+      <tr><td class="name">Amazon Connect</td><td class="desc">Cloud contact center; integrates with Lex/AI for support.</td></tr>
+      <tr><td class="name">AWS DataSync</td><td class="desc">Move large data between on-prem and AWS storage.</td></tr>
+      <tr><td class="name">AWS Transfer Family</td><td class="desc">Managed SFTP/FTPS/FTP into S3/EFS.</td></tr>
+    </table>
+  </div>
+
+</div>
+
+<div class="foot">
+  <b>Highest-yield for AIP-C01:</b> Bedrock (+ KB, Guardrails, Prompt Mgmt, Data Automation, Model Eval) · SageMaker AI · DynamoDB · OpenSearch · Lambda · Step Functions · EventBridge · API Gateway · IAM/Identity Center · Comprehend · A2I · CloudWatch/CloudTrail · S3 Lifecycle. &nbsp; Orange dot = shows up repeatedly in scenarios.
+</div>
+
+</div>
+</body>
+</html>

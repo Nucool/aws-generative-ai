@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIP-C01 · Domain 2 Cram Sheet</title>
+<style>
+  :root{
+    --ink:#16283d; --sub:#4a6180; --line:#dbe3ec; --bg:#fbfcfe;
+    --amber:#a86a12; --amber-bg:#fffaf0;
+    --red:#b53228; --red-bg:#fdf3f2;
+    --green:#186b4a; --green-bg:#eff8f3;
+    --blue:#7a3ea8; --blue-bg:#f3edfa;
+    --svc-bg:#eaeff5; --svc-ink:#2c4360;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.4; font-size:12px; padding:20px;}
+  .wrap{max-width:1240px;margin:0 auto;}
+  header.top{border-bottom:3px solid var(--ink); padding-bottom:10px; margin-bottom:14px;
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:8px;}
+  header.top h1{font-size:21px; letter-spacing:-.3px;}
+  header.top h1 span{color:var(--blue);}
+  header.top .meta{font-size:10.5px; color:var(--sub); text-align:right; line-height:1.5;}
+  .badge{display:inline-block; background:var(--ink); color:#fff; font-size:10.5px;
+    font-weight:700; padding:2px 9px; border-radius:20px;}
+  .task{border:1px solid var(--line); border-radius:8px; background:#fff;
+    margin-bottom:12px; overflow:hidden; break-inside:avoid; page-break-inside:avoid;}
+  .task > h2{font-size:13px; background:var(--blue-bg); color:var(--blue);
+    padding:6px 10px; border-bottom:1px solid var(--line);}
+  .task > h2 .tid{font-family:Consolas,monospace; background:var(--blue); color:#fff;
+    padding:1px 6px; border-radius:4px; font-size:11px; margin-right:7px;}
+  .skill{padding:7px 10px; border-bottom:1px dashed var(--line);}
+  .skill:last-child{border-bottom:none;}
+  .skill h3{font-size:11.5px; color:var(--ink); margin-bottom:4px;}
+  .skill h3 .sid{font-family:Consolas,monospace; background:var(--svc-bg); color:var(--svc-ink);
+    padding:1px 5px; border-radius:3px; font-size:10.5px; margin-right:6px; font-weight:700;}
+  .svc{display:inline-block; background:var(--svc-bg); color:var(--svc-ink);
+    font-size:10.5px; padding:1px 6px; border-radius:3px; margin:2px 3px 2px 0; font-weight:600;}
+  .k,.t,.w{padding:4px 7px; border-radius:0 4px 4px 0; font-size:11.5px; margin-top:4px;}
+  .k{background:var(--green-bg); border-left:3px solid var(--green);} .k b{color:var(--green);}
+  .t{background:var(--red-bg); border-left:3px solid var(--red);} .t b{color:var(--red);}
+  .w{background:var(--amber-bg); border-left:3px solid var(--amber);} .w b{color:var(--amber);}
+  .arrow{color:var(--amber); font-weight:700;}
+  code{background:var(--svc-bg); padding:0 3px; border-radius:2px; font-size:10.5px;}
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .dtable{border:1px solid var(--line); border-radius:8px; background:#fff; overflow:hidden; break-inside:avoid;}
+  .dtable h2{font-size:12.5px; background:var(--ink); color:#fff; padding:6px 10px;}
+  table{width:100%; border-collapse:collapse; font-size:11px;}
+  th,td{text-align:left; padding:4px 9px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:#f3f6fa; color:var(--sub); font-size:10px; text-transform:uppercase; letter-spacing:.3px;}
+  .foot{margin-top:12px; padding-top:9px; border-top:1px solid var(--line);
+    font-size:10.5px; color:var(--sub); text-align:center;}
+  @media print{ body{padding:0; font-size:10px;} @page{margin:.8cm;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>AIP-C01 · Domain 2 <span>Cram Sheet</span></h1>
+  <div class="meta">
+    <strong>Implementation and Integration</strong> · <span class="badge">26%</span><br>
+    All sub-skills: 2.1.1 → 2.5.6 &nbsp;|&nbsp; green = key &nbsp; red = trap &nbsp; amber = watch
+  </div>
+</header>
+
+<!-- TASK 2.1 -->
+<div class="task">
+  <h2><span class="tid">2.1</span> Agentic AI solutions and tool integrations</h2>
+
+  <div class="skill">
+    <h3><span class="sid">2.1.1</span> Autonomous systems with memory &amp; state management</h3>
+    <span class="svc">Strands Agents</span><span class="svc">AWS Agent Squad</span><span class="svc">MCP</span><span class="svc">Bedrock AgentCore</span>
+    <div class="k"><b>Key:</b> Multi-agent systems <span class="arrow">→</span> Strands Agents / Agent Squad. Agent-tool interaction protocol <span class="arrow">→</span> <b>MCP</b>. Persistent state / graph-based orchestration / checkpointed replay <span class="arrow">→</span> LangGraph-style frameworks.</div>
+    <div class="t"><b>Trap:</b> "graph execution + durable state + rollback/replay" <span class="arrow">→</span> a purpose-built agent framework (LangGraph). Step Functions Map "to <b>simulate</b> agent memory" = red flag (bending a service to a job it wasn't built for). SageMaker Pipelines = ML train/deploy, not agent runtime.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.1.2</span> Structured reasoning (ReAct, chain-of-thought)</h3>
+    <span class="svc">Step Functions (ReAct)</span><span class="svc">chain-of-thought</span>
+    <div class="k"><b>Key:</b> Break a problem into logical steps via <b>Step Functions ReAct</b> — one <b>state per step</b> (observation / reasoning / action) with a specific prompt each, plus built-in retry/error handling.</div>
+    <div class="t"><b>Trap:</b> "single state that stuffs the entire conversation history into every prompt" = <b>not</b> structured and grows inconsistent as history balloons. Structured = separate controlled states, not one giant prompt.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.1.3</span> Safeguarded workflows (controlled FM behavior)</h3>
+    <span class="svc">Step Functions stopping conditions</span><span class="svc">Lambda timeouts</span><span class="svc">IAM boundaries</span><span class="svc">circuit breakers</span>
+    <div class="k"><b>Key:</b> Bound agent behavior with stopping conditions, timeouts, IAM resource boundaries and circuit breakers to prevent runaway loops.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.1.4</span> Model coordination / ensembles</h3>
+    <span class="svc">specialized FMs</span><span class="svc">custom aggregation</span><span class="svc">model selection frameworks</span>
+    <div class="k"><b>Key:</b> Multiple different tasks that must be combined <span class="arrow">→</span> <b>supervisor agent orchestrating specialized sub-agents</b> (quantitative / news / summarization) with aggregation.</div>
+    <div class="t"><b>Trap:</b> "decentralized network, each agent independent, talks directly to users" = no coordination <span class="arrow">→</span> wrong when results must be combined. Supervisor (centralized) beats decentralized for combined output.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.1.5</span> Human-in-the-loop / collaborative AI</h3>
+    <span class="svc">Step Functions (review/approval)</span><span class="svc">API Gateway (feedback)</span><span class="svc">Amazon A2I</span>
+    <div class="k"><b>Key:</b> Orchestrate review/approval with Step Functions; collect feedback via API Gateway. <b>A2I</b> = human review of <b>AI-generated output/predictions</b> (integrates back into SageMaker for retraining).</div>
+    <div class="w"><b>Watch:</b> <b>A2I</b> = review generated <b>output</b>. <b>Ground Truth / GT Plus</b> = <b>label raw data</b> to build training sets. Answer follows what the <b>option text</b> states, not the service's theoretical reach.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.1.6</span> Intelligent tool integrations</h3>
+    <span class="svc">Strands API</span><span class="svc">standardized function definitions</span><span class="svc">Lambda (error handling, param validation)</span>
+    <div class="k"><b>Key:</b> Reliable tool ops = standardized function definitions + Lambda for parameter validation and error handling. Bedrock Agent action group Lambda handles the external call/auth.</div>
+    <div class="t"><b>Trap:</b> Agent calling an external API <span class="arrow">→</span> <b>Action Group + Lambda inside the agent flow</b> (Lambda does OAuth/token). Passing a token <em>into</em> the agent from outside = wrong direction. Caching a 30-min token in CloudFront = stale-token risk.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.1.7</span> Model extension frameworks (MCP servers)</h3>
+    <span class="svc">Lambda (stateless MCP server)</span><span class="svc">ECS (complex MCP tools)</span><span class="svc">MCP client libraries</span>
+    <div class="k"><b>Key:</b> Lightweight tool access <span class="arrow">→</span> <b>Lambda</b> stateless MCP server. Heavy/complex tools <span class="arrow">→</span> <b>ECS</b> MCP server. MCP client libs = consistent access.</div>
+  </div>
+</div>
+
+<!-- TASK 2.2 -->
+<div class="task">
+  <h2><span class="tid">2.2</span> Model deployment strategies</h2>
+
+  <div class="skill">
+    <h3><span class="sid">2.2.1</span> Deploy FMs by application needs</h3>
+    <span class="svc">Lambda (on-demand invoke)</span><span class="svc">Bedrock Provisioned Throughput</span><span class="svc">SageMaker endpoints (hybrid)</span>
+    <div class="k"><b>Key:</b> Match the deployment: on-demand for spiky, provisioned for guaranteed throughput, SageMaker endpoints for hybrid/self-hosted.</div>
+    <div class="w"><b>Watch (SageMaker inference types):</b> <b>Real-time</b> = payload ≤6 MB, &lt;60 s. <b>Async</b> = large payload (≤1 GB), long jobs (≤1 h), <b>request/response</b> + scale-to-zero. <b>Batch Transform</b> = whole dataset offline, <b>not</b> request/response. <b>Serverless</b> = intermittent traffic.</div>
+    <div class="t"><b>Trap:</b> payload &gt;6 MB or runtime &gt;60 s <span class="arrow">→</span> rules out real-time. "request/response" rules out batch. Async is the classic "large payload + long + cost-effective + request/response" answer.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.2.2</span> LLM-specific deployment challenges</h3>
+    <span class="svc">container-based deployment</span><span class="svc">GPU utilization</span><span class="svc">model loading strategies</span>
+    <div class="k"><b>Key:</b> LLMs need memory-optimized containers, GPU planning, token-processing capacity, and preloaded model weights.</div>
+    <div class="t"><b>Trap:</b> "lazy loading" / scale-to-zero / min instances = 0 <span class="arrow">→</span> <b>cold start</b> (red flag for low-latency real-time). Fix cold start with <b>nonzero minimum instances</b> + <b>preload model at container start</b>.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.2.3</span> Optimized deployment (balance performance &amp; resources)</h3>
+    <span class="svc">smaller pre-trained models</span><span class="svc">API-based model cascading</span><span class="svc">model distillation</span>
+    <div class="k"><b>Key:</b> Routine queries <span class="arrow">→</span> smaller/cheaper model or cascade. <b>Distillation:</b> teacher (large) → student (<b>smaller</b>, cheaper). Distill from Pro → Lite, never to a larger model.</div>
+    <div class="t"><b>Trap:</b> Distillation student <b>bigger</b> than teacher (Pro → Premier) = wrong, raises cost. When synthesizing training data, use <b>prompts only</b> (teacher regenerates responses), not the stored prompt-response pairs.</div>
+  </div>
+</div>
+
+<!-- TASK 2.3 -->
+<div class="task">
+  <h2><span class="tid">2.3</span> Enterprise integration architectures</h2>
+
+  <div class="skill">
+    <h3><span class="sid">2.3.1</span> Enterprise connectivity with FMs</h3>
+    <span class="svc">API integrations</span><span class="svc">event-driven (loose coupling)</span><span class="svc">data synchronization</span>
+    <div class="k"><b>Key:</b> Legacy integration via APIs; loose coupling via event-driven architecture; keep data in sync with established patterns.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.3.2</span> Enhance existing apps with GenAI</h3>
+    <span class="svc">API Gateway (microservices)</span><span class="svc">Lambda (webhook handlers)</span><span class="svc">EventBridge (event-driven)</span>
+    <div class="k"><b>Key:</b> S3 upload triggers pipeline <span class="arrow">→</span> <b>EventBridge rule → Step Functions directly</b> (least overhead). EventBridge for event-driven integration.</div>
+    <div class="t"><b>Trap:</b> "S3 notification → Lambda → invoke Step Functions" adds a needless Lambda hop; EventBridge → Step Functions as a direct target is cheaper. Presigned URL for mobile/client uploads, not PutObject.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.3.3</span> Secure access frameworks</h3>
+    <span class="svc">identity federation</span><span class="svc">RBAC</span><span class="svc">least-privilege API access</span><span class="svc">IAM Identity Center</span>
+    <div class="k"><b>Key:</b> Federate identity between FM services and enterprise; enforce RBAC + least-privilege on model/data access. Q Business RBAC <span class="arrow">→</span> IAM Identity Center + security-group mapping.</div>
+    <div class="t"><b>Trap:</b> Building a custom API Gateway + Lambda access layer, or CloudWatch alarms to "revoke sessions", when native RBAC exists = overhead + detective-not-preventive.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.3.4</span> Cross-environment / data-compliance across jurisdictions</h3>
+    <span class="svc">AWS Outposts (on-prem)</span><span class="svc">AWS Wavelength (edge)</span><span class="svc">secure routing</span>
+    <div class="k"><b>Key:</b> On-prem data integration <span class="arrow">→</span> Outposts. Edge/low-latency deployment <span class="arrow">→</span> Wavelength. Keep secure routing between cloud and on-prem.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.3.5</span> CI/CD pipelines &amp; GenAI gateway architectures</h3>
+    <span class="svc">CodePipeline</span><span class="svc">CodeBuild</span><span class="svc">centralized abstraction layer</span><span class="svc">security scans + rollback</span>
+    <div class="k"><b>Key:</b> Automated testing + security scans + rollback in CI/CD; a centralized abstraction layer (GenAI gateway) for observability and control of consumption.</div>
+  </div>
+</div>
+
+<!-- TASK 2.4 -->
+<div class="task">
+  <h2><span class="tid">2.4</span> FM API integrations</h2>
+
+  <div class="skill">
+    <h3><span class="sid">2.4.1</span> Flexible model interaction systems</h3>
+    <span class="svc">Bedrock APIs (sync)</span><span class="svc">SQS (async)</span><span class="svc">API Gateway (request validation)</span>
+    <div class="k"><b>Key:</b> Sync requests via Bedrock APIs; async processing via SDK + <b>SQS</b>; API Gateway for custom clients with request validation.</div>
+    <div class="t"><b>Trap:</b> <b>SQS/queue = async</b> — a red flag when the requirement is <b>real-time / sub-second</b> chat.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.4.2</span> Real-time interaction (immediate feedback)</h3>
+    <span class="svc">Bedrock streaming APIs</span><span class="svc">WebSockets / SSE</span><span class="svc">API Gateway chunked transfer</span>
+    <div class="k"><b>Key:</b> "user waits too long for the first word / first token" <span class="arrow">→</span> <b>response streaming</b> (deliver tokens incrementally). WebSockets or SSE for real-time text.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.4.3</span> Resilient FM systems</h3>
+    <span class="svc">SDK exponential backoff</span><span class="svc">API Gateway rate limiting</span><span class="svc">fallback / graceful degradation</span><span class="svc">X-Ray</span>
+    <div class="k"><b>Key:</b> Reliability = exponential backoff on throttling, API Gateway rate limiting, fallback for degradation, X-Ray for cross-service observability.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.4.4</span> Intelligent model routing</h3>
+    <span class="svc">Step Functions (content-based routing)</span><span class="svc">Bedrock Intelligent Prompt Router</span><span class="svc">API Gateway request transform</span>
+    <div class="k"><b>Key:</b> Route to specialized FMs by content/complexity. Same-family routing <span class="arrow">→</span> <b>Intelligent Prompt Router</b> (+ fallback). Static config or Step Functions for dynamic routing.</div>
+    <div class="t"><b>Trap:</b> Intelligent Prompt Router routes <b>within one family only</b>. Cross-family (Titan / Llama ↔ Claude) <span class="arrow">→</span> custom routing. "Small model self-assesses then escalates" doubles latency/cost for complex queries.</div>
+  </div>
+</div>
+
+<!-- TASK 2.5 -->
+<div class="task">
+  <h2><span class="tid">2.5</span> Application integration patterns and development tools</h2>
+
+  <div class="skill">
+    <h3><span class="sid">2.5.1</span> FM API interfaces for GenAI workloads</h3>
+    <span class="svc">API Gateway (streaming, token limits)</span><span class="svc">retry strategies</span>
+    <div class="k"><b>Key:</b> Handle streaming responses, token-limit management and model-timeout retries at the API layer.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.5.2</span> Accessible AI interfaces</h3>
+    <span class="svc">AWS Amplify (UI)</span><span class="svc">OpenAPI specs</span><span class="svc">Bedrock Prompt Flows (no-code)</span>
+    <div class="k"><b>Key:</b> Amplify for declarative UI; OpenAPI for API-first; Prompt Flows for no-code workflow building.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.5.3</span> Business system enhancements</h3>
+    <span class="svc">Lambda (CRM)</span><span class="svc">Step Functions (doc processing)</span><span class="svc">Bedrock Data Automation</span>
+    <div class="k"><b>Key:</b> Orchestrate document-processing systems with Step Functions; automate data-processing workflows with <b>BDA</b>.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.5.4</span> Developer productivity</h3>
+    <span class="svc">Amazon Q Developer</span>
+    <div class="k"><b>Key:</b> Q Developer for code generation/refactoring, API assistance, component testing, performance optimization.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.5.5</span> Advanced GenAI applications</h3>
+    <span class="svc">Strands Agents</span><span class="svc">AWS Agent Squad</span><span class="svc">Step Functions (agent patterns)</span><span class="svc">Bedrock (prompt chaining)</span>
+    <div class="k"><b>Key:</b> AWS-native agent orchestration <span class="arrow">→</span> Strands / Agent Squad; Step Functions for agent design patterns; Bedrock for prompt-chaining.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">2.5.6</span> Troubleshooting efficiency</h3>
+    <span class="svc">CloudWatch Logs Insights</span><span class="svc">X-Ray (trace FM calls)</span><span class="svc">Q Developer</span>
+    <div class="k"><b>Key:</b> Analyze prompts/responses with Logs Insights; trace FM API calls with X-Ray; Q Developer for error-pattern recognition.</div>
+  </div>
+</div>
+
+<!-- DECISION TABLES -->
+<div class="cols">
+  <div class="dtable">
+    <h2>SageMaker inference type decision</h2>
+    <table>
+      <tr><th>Stem says…</th><th>Pick</th></tr>
+      <tr><td>payload ≤6 MB, &lt;60 s, low latency, always-on</td><td><b>Real-time</b> endpoint</td></tr>
+      <tr><td>large payload (to 1 GB), long job (to 1 h), request/response, cost-effective</td><td><b>Async</b> endpoint</td></tr>
+      <tr><td>whole dataset, offline, no request/response</td><td><b>Batch Transform</b></td></tr>
+      <tr><td>intermittent / unpredictable traffic</td><td><b>Serverless</b></td></tr>
+      <tr><td>spike at off-peak / idle = cold start</td><td>nonzero min instances + preload</td></tr>
+      <tr><td>user waits for first token</td><td>response <b>streaming</b></td></tr>
+    </table>
+  </div>
+
+  <div class="dtable">
+    <h2>Agent / routing / integration traps</h2>
+    <table>
+      <tr><th>Pattern</th><th>Right answer</th></tr>
+      <tr><td>combine multiple task types into one result</td><td><b>Supervisor + sub-agents</b> (not decentralized)</td></tr>
+      <tr><td>graph state + rollback/replay</td><td>agent framework (LangGraph); not "simulate" via Step Functions</td></tr>
+      <tr><td>structured step-by-step reasoning</td><td>Step Functions ReAct, one state per step</td></tr>
+      <tr><td>agent calls external API w/ OAuth</td><td>Action Group + <b>Lambda inside</b> the flow</td></tr>
+      <tr><td>route across model families</td><td><b>custom routing</b> (not Intelligent Prompt Router)</td></tr>
+      <tr><td>real-time chat</td><td>streaming — <b>not</b> SQS/queue (async)</td></tr>
+      <tr><td>S3 upload triggers workflow</td><td>EventBridge → Step Functions <b>direct</b></td></tr>
+      <tr><td>mobile/client file upload</td><td>S3 <b>presigned URL</b> (not PutObject)</td></tr>
+      <tr><td>review AI-generated output</td><td><b>A2I</b> (Ground Truth = label raw data)</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="foot">
+  <b>Domain 2 golden rule:</b> agent orchestration = supervisor over sub-agents; deployment = match payload/latency/throughput to the right inference type; integration = event-driven with the fewest hops; and never route across model families with the native prompt router.
+</div>
+
+</div>
+</body>
+</html>

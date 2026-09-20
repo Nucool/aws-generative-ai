@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIP-C01 · Domain 3 Cram Sheet</title>
+<style>
+  :root{
+    --ink:#16283d; --sub:#4a6180; --line:#dbe3ec; --bg:#fbfcfe;
+    --amber:#a86a12; --amber-bg:#fffaf0;
+    --red:#b53228; --red-bg:#fdf3f2;
+    --green:#186b4a; --green-bg:#eff8f3;
+    --blue:#a83e5c; --blue-bg:#faedf1;
+    --svc-bg:#eaeff5; --svc-ink:#2c4360;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.4; font-size:12px; padding:20px;}
+  .wrap{max-width:1240px;margin:0 auto;}
+  header.top{border-bottom:3px solid var(--ink); padding-bottom:10px; margin-bottom:14px;
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:8px;}
+  header.top h1{font-size:21px; letter-spacing:-.3px;}
+  header.top h1 span{color:var(--blue);}
+  header.top .meta{font-size:10.5px; color:var(--sub); text-align:right; line-height:1.5;}
+  .badge{display:inline-block; background:var(--ink); color:#fff; font-size:10.5px;
+    font-weight:700; padding:2px 9px; border-radius:20px;}
+  .task{border:1px solid var(--line); border-radius:8px; background:#fff;
+    margin-bottom:12px; overflow:hidden; break-inside:avoid; page-break-inside:avoid;}
+  .task > h2{font-size:13px; background:var(--blue-bg); color:var(--blue);
+    padding:6px 10px; border-bottom:1px solid var(--line);}
+  .task > h2 .tid{font-family:Consolas,monospace; background:var(--blue); color:#fff;
+    padding:1px 6px; border-radius:4px; font-size:11px; margin-right:7px;}
+  .skill{padding:7px 10px; border-bottom:1px dashed var(--line);}
+  .skill:last-child{border-bottom:none;}
+  .skill h3{font-size:11.5px; color:var(--ink); margin-bottom:4px;}
+  .skill h3 .sid{font-family:Consolas,monospace; background:var(--svc-bg); color:var(--svc-ink);
+    padding:1px 5px; border-radius:3px; font-size:10.5px; margin-right:6px; font-weight:700;}
+  .svc{display:inline-block; background:var(--svc-bg); color:var(--svc-ink);
+    font-size:10.5px; padding:1px 6px; border-radius:3px; margin:2px 3px 2px 0; font-weight:600;}
+  .k,.t,.w{padding:4px 7px; border-radius:0 4px 4px 0; font-size:11.5px; margin-top:4px;}
+  .k{background:var(--green-bg); border-left:3px solid var(--green);} .k b{color:var(--green);}
+  .t{background:var(--red-bg); border-left:3px solid var(--red);} .t b{color:var(--red);}
+  .w{background:var(--amber-bg); border-left:3px solid var(--amber);} .w b{color:var(--amber);}
+  .arrow{color:var(--amber); font-weight:700;}
+  code{background:var(--svc-bg); padding:0 3px; border-radius:2px; font-size:10.5px;}
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .dtable{border:1px solid var(--line); border-radius:8px; background:#fff; overflow:hidden; break-inside:avoid;}
+  .dtable h2{font-size:12.5px; background:var(--ink); color:#fff; padding:6px 10px;}
+  table{width:100%; border-collapse:collapse; font-size:11px;}
+  th,td{text-align:left; padding:4px 9px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:#f3f6fa; color:var(--sub); font-size:10px; text-transform:uppercase; letter-spacing:.3px;}
+  .foot{margin-top:12px; padding-top:9px; border-top:1px solid var(--line);
+    font-size:10.5px; color:var(--sub); text-align:center;}
+  @media print{ body{padding:0; font-size:10px;} @page{margin:.8cm;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>AIP-C01 · Domain 3 <span>Cram Sheet</span></h1>
+  <div class="meta">
+    <strong>AI Safety, Security, and Governance</strong> · <span class="badge">20%</span><br>
+    All sub-skills: 3.1.1 → 3.4.3 &nbsp;|&nbsp; green = key &nbsp; red = trap &nbsp; amber = watch
+  </div>
+</header>
+
+<!-- TASK 3.1 -->
+<div class="task">
+  <h2><span class="tid">3.1</span> Input and output safety controls</h2>
+
+  <div class="skill">
+    <h3><span class="sid">3.1.1</span> Content safety for harmful inputs</h3>
+    <span class="svc">Bedrock Guardrails (content filters)</span><span class="svc">Step Functions + Lambda (moderation)</span>
+    <div class="k"><b>Key:</b> Filter harmful user input with <b>Guardrails content filters</b>; custom moderation via Step Functions + Lambda; real-time validation before inference.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">3.1.2</span> Content safety for harmful outputs</h3>
+    <span class="svc">Guardrails (filter responses)</span><span class="svc">FM evaluations (toxicity)</span><span class="svc">text-to-SQL (deterministic)</span>
+    <div class="k"><b>Key:</b> Filter harmful <b>outputs</b> with Guardrails; specialized FM evals for toxicity; text-to-SQL to force deterministic results instead of free-form generation.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">3.1.3</span> Accuracy verification / reduce hallucinations</h3>
+    <span class="svc">Bedrock KB (grounding)</span><span class="svc">Contextual grounding check</span><span class="svc">confidence + semantic similarity</span><span class="svc">JSON Schema</span>
+    <div class="k"><b>Key:</b> Reduce hallucination by <b>grounding on a Knowledge Base</b> + <b>contextual grounding check</b>; verify with confidence scoring + semantic similarity; enforce structure with JSON Schema.</div>
+    <div class="t"><b>Trap:</b> "incorrect / inaccurate info" <span class="arrow">→</span> <b>Contextual grounding check</b> (a Guardrails feature) + KB grounding, <b>not</b> more orchestration. Reducing hallucination is a content/grounding fix, not a throughput fix.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">3.1.4</span> Defense-in-depth safety</h3>
+    <span class="svc">Comprehend (pre-filter)</span><span class="svc">Bedrock (model guardrails)</span><span class="svc">Lambda (post-validation)</span><span class="svc">API Gateway (response filter)</span>
+    <div class="k"><b>Key:</b> Layer protections: Comprehend pre-processing filter → Guardrails at the model → Lambda post-processing validation → API Gateway response filtering.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">3.1.5</span> Advanced threat detection (adversarial inputs)</h3>
+    <span class="svc">prompt-injection / jailbreak detection</span><span class="svc">input sanitization</span><span class="svc">safety classifiers</span><span class="svc">adversarial testing</span>
+    <div class="k"><b>Key:</b> Detect prompt injection and jailbreaks; sanitize inputs; use safety classifiers and automated adversarial-testing workflows.</div>
+  </div>
+</div>
+
+<!-- TASK 3.2 -->
+<div class="task">
+  <h2><span class="tid">3.2</span> Data security and privacy controls</h2>
+
+  <div class="skill">
+    <h3><span class="sid">3.2.1</span> Protected AI environments</h3>
+    <span class="svc">VPC endpoints</span><span class="svc">IAM policies</span><span class="svc">Lake Formation</span><span class="svc">CloudWatch (monitor access)</span><span class="svc">PrivateLink</span>
+    <div class="k"><b>Key:</b> Network isolation with <b>VPC endpoints / PrivateLink</b> (no public internet); IAM for secure access patterns; Lake Formation for granular data access. Distributed training: <b>inter-container traffic encryption</b> + VPC endpoint + PrivateLink + least-privilege (read-only) role.</div>
+    <div class="t"><b>Trap:</b> Don't pick two overlapping choices (S3 VPC endpoint + PrivateLink-to-S3 = same job). "read-only execution role" is a <b>valid</b> least-privilege answer (write to output path is separate). Network Firewall inspect ≠ encrypt; NSG "accept inbound" ≠ secure.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">3.2.2</span> Privacy-preserving systems (PII protection)</h3>
+    <span class="svc">Comprehend + Macie (detect PII)</span><span class="svc">Bedrock native privacy</span><span class="svc">Guardrails (filter output)</span><span class="svc">S3 Lifecycle (retention)</span>
+    <div class="k"><b>Key:</b> Detect PII with Comprehend/Macie; filter output with Guardrails <b>sensitive information filters</b>; enforce retention with <b>S3 Lifecycle</b>.</div>
+    <div class="t"><b>Trap:</b> "data cannot be retained longer than necessary" <span class="arrow">→</span> S3 Lifecycle <b>expiration/delete</b>, NOT "move to archival" (archival keeps it longer). Role-based PII exposure <span class="arrow">→</span> Cognito group + <b>ApplyGuardrail</b> (runtime mask), one KB — not two KBs.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">3.2.3</span> Privacy-focused systems (maintain utility)</h3>
+    <span class="svc">data masking</span><span class="svc">Comprehend PII detection</span><span class="svc">anonymization</span><span class="svc">Guardrails</span>
+    <div class="k"><b>Key:</b> Mask/anonymize sensitive data while keeping FM utility. Guardrails PII filters + masking preserve function.</div>
+    <div class="w"><b>Watch:</b> <b>Macie</b> = scan PII <b>in S3</b> (storage). <b>Comprehend</b> = detect/redact PII <b>in text</b> (pipeline). <b>Guardrails</b> = filter PII at the model boundary (runtime, role-aware). Rekognition = images, never text PII.</div>
+  </div>
+</div>
+
+<!-- TASK 3.3 -->
+<div class="task">
+  <h2><span class="tid">3.3</span> AI governance and compliance mechanisms</h2>
+
+  <div class="skill">
+    <h3><span class="sid">3.3.1</span> Compliance frameworks</h3>
+    <span class="svc">SageMaker model cards</span><span class="svc">Glue (data lineage)</span><span class="svc">metadata tagging</span><span class="svc">CloudWatch Logs (decision logs)</span>
+    <div class="k"><b>Key:</b> Programmatic model cards, automatic data-lineage tracking, metadata tagging for source attribution, comprehensive decision logs.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">3.3.2</span> Data source tracking / traceability</h3>
+    <span class="svc">Glue Data Catalog</span><span class="svc">metadata tagging</span><span class="svc">CloudTrail (audit)</span><span class="svc">Bedrock Model Invocation Logging</span>
+    <div class="k"><b>Key:</b> "log FM usage + track prompt lineage + model I/O metadata" <span class="arrow">→</span> <b>Bedrock Model Invocation Logging</b> (captures prompt input + output + metadata to S3/CloudWatch). CloudTrail = API-level audit.</div>
+    <div class="t"><b>Trap:</b> CloudTrail alone does <b>not</b> capture prompt/response <b>content</b> — for I/O metadata you need <b>Model Invocation Logging</b>.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">3.3.3</span> Organizational governance systems</h3>
+    <span class="svc">SCP (org-wide)</span><span class="svc">CloudFormation StackSets</span><span class="svc">IAM Identity Center permission sets</span>
+    <div class="k"><b>Key:</b> Restrict which models can be invoked org-wide <span class="arrow">→</span> <b>SCP</b> (matches model ID) + IAM Identity Center permission sets. Deploy a guardrail to every account <span class="arrow">→</span> <b>StackSets</b>. Enforce guardrail usage <span class="arrow">→</span> SCP requiring a guardrail identifier.</div>
+    <div class="t"><b>Trap:</b> <b>RCP does not support Bedrock</b> — can't control Bedrock model access with an RCP (SCP does). StackSets that provision IAM roles per account = more overhead than one SCP. Bedrock FMs don't take resource-based policies per model.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">3.3.4</span> Continuous monitoring &amp; advanced governance</h3>
+    <span class="svc">automated misuse/drift detection</span><span class="svc">bias drift monitoring</span><span class="svc">token-level redaction</span><span class="svc">response logging</span><span class="svc">output policy filters</span>
+    <div class="k"><b>Key:</b> Automated detection of misuse/drift/policy violations, bias-drift monitoring, alerting + remediation, token-level redaction and output policy filters for audit readiness.</div>
+  </div>
+</div>
+
+<!-- TASK 3.4 -->
+<div class="task">
+  <h2><span class="tid">3.4</span> Responsible AI principles</h2>
+
+  <div class="skill">
+    <h3><span class="sid">3.4.1</span> Transparent AI (explainability)</h3>
+    <span class="svc">reasoning displays</span><span class="svc">CloudWatch (confidence metrics)</span><span class="svc">evidence / source attribution</span><span class="svc">Bedrock agent tracing</span>
+    <div class="k"><b>Key:</b> User-facing reasoning displays, confidence/uncertainty metrics, evidence for source attribution, agent tracing for reasoning traces.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">3.4.2</span> Fairness evaluations (unbiased outputs)</h3>
+    <span class="svc">CloudWatch fairness metrics</span><span class="svc">Prompt Management / Prompt Flows (A/B)</span><span class="svc">LLM-as-a-Judge</span><span class="svc">SageMaker Clarify</span>
+    <div class="k"><b>Key:</b> Predefined fairness metrics; systematic A/B testing via Prompt Management/Flows; automated model evals with <b>LLM-as-a-Judge</b>. <b>Clarify</b> = detect bias / class imbalance in datasets.</div>
+    <div class="w"><b>Watch:</b> A/B testing = <b>compare multiple versions to select the best</b> (distinct from Canary/Blue-Green/Linear, which are safe-rollout of one model).</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">3.4.3</span> Policy-compliant AI systems</h3>
+    <span class="svc">Guardrails (policy-based)</span><span class="svc">model cards (limitations)</span><span class="svc">Lambda (compliance checks)</span>
+    <div class="k"><b>Key:</b> Guardrails configured to policy; model cards documenting FM limitations; Lambda for automated compliance checks.</div>
+  </div>
+</div>
+
+<!-- DECISION TABLES -->
+<div class="cols">
+  <div class="dtable">
+    <h2>Guardrails components → requirement</h2>
+    <table>
+      <tr><th>Requirement</th><th>Guardrails feature</th></tr>
+      <tr><td>PII / privacy / personal info</td><td><b>Sensitive information filters</b></td></tr>
+      <tr><td>avoid unauthorized / prohibited topics</td><td><b>Denied topics</b></td></tr>
+      <tr><td>incorrect / inaccurate / hallucination</td><td><b>Contextual grounding check</b> (+ Automated Reasoning)</td></tr>
+      <tr><td>harmful / toxic / hate / violence</td><td><b>Content filters</b></td></tr>
+      <tr><td>block specific words / profanity list</td><td><b>Word filters</b></td></tr>
+      <tr><td>role-based PII exposure (runtime mask)</td><td>Cognito group + <b>ApplyGuardrail</b></td></tr>
+    </table>
+  </div>
+
+  <div class="dtable">
+    <h2>Security / governance red flags</h2>
+    <table>
+      <tr><th>Phrase in option</th><th>Why wrong</th></tr>
+      <tr><td>Guardrails "enforce RBAC"</td><td>Guardrails = content safety only</td></tr>
+      <tr><td>RCP to control Bedrock access</td><td>RCP doesn't support Bedrock (use <b>SCP</b>)</td></tr>
+      <tr><td>Lifecycle "move to archival" for retention limit</td><td>archival keeps data (need <b>delete/expire</b>)</td></tr>
+      <tr><td>cross-Region inference under data residency</td><td>violates residency</td></tr>
+      <tr><td>Config rule / EventBridge to "revoke" after the fact</td><td>detective, not preventive</td></tr>
+      <tr><td>Macie / Rekognition to detect hallucination or text PII</td><td>wrong tool (Macie=S3 PII, Rekognition=images)</td></tr>
+      <tr><td>word filter to block PII</td><td>use <b>sensitive info filters</b></td></tr>
+      <tr><td>retroactive log-scrub of PII</td><td>too late — need preventive guardrail</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="foot">
+  <b>Domain 3 golden rule:</b> preventive beats detective; put each control on the service that actually performs it (Guardrails = safety, IAM/SCP = access, Model Invocation Logging = I/O audit); and match every Guardrails requirement to its specific component.
+</div>
+
+</div>
+</body>
+</html>

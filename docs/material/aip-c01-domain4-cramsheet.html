@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIP-C01 · Domain 4 Cram Sheet</title>
+<style>
+  :root{
+    --ink:#16283d; --sub:#4a6180; --line:#dbe3ec; --bg:#fbfcfe;
+    --amber:#a86a12; --amber-bg:#fffaf0;
+    --red:#b53228; --red-bg:#fdf3f2;
+    --green:#186b4a; --green-bg:#eff8f3;
+    --blue:#1f7a6b; --blue-bg:#e9f6f3;
+    --svc-bg:#eaeff5; --svc-ink:#2c4360;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.4; font-size:12px; padding:20px;}
+  .wrap{max-width:1240px;margin:0 auto;}
+  header.top{border-bottom:3px solid var(--ink); padding-bottom:10px; margin-bottom:14px;
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:8px;}
+  header.top h1{font-size:21px; letter-spacing:-.3px;}
+  header.top h1 span{color:var(--blue);}
+  header.top .meta{font-size:10.5px; color:var(--sub); text-align:right; line-height:1.5;}
+  .badge{display:inline-block; background:var(--ink); color:#fff; font-size:10.5px;
+    font-weight:700; padding:2px 9px; border-radius:20px;}
+  .task{border:1px solid var(--line); border-radius:8px; background:#fff;
+    margin-bottom:12px; overflow:hidden; break-inside:avoid; page-break-inside:avoid;}
+  .task > h2{font-size:13px; background:var(--blue-bg); color:var(--blue);
+    padding:6px 10px; border-bottom:1px solid var(--line);}
+  .task > h2 .tid{font-family:Consolas,monospace; background:var(--blue); color:#fff;
+    padding:1px 6px; border-radius:4px; font-size:11px; margin-right:7px;}
+  .skill{padding:7px 10px; border-bottom:1px dashed var(--line);}
+  .skill:last-child{border-bottom:none;}
+  .skill h3{font-size:11.5px; color:var(--ink); margin-bottom:4px;}
+  .skill h3 .sid{font-family:Consolas,monospace; background:var(--svc-bg); color:var(--svc-ink);
+    padding:1px 5px; border-radius:3px; font-size:10.5px; margin-right:6px; font-weight:700;}
+  .svc{display:inline-block; background:var(--svc-bg); color:var(--svc-ink);
+    font-size:10.5px; padding:1px 6px; border-radius:3px; margin:2px 3px 2px 0; font-weight:600;}
+  .k,.t,.w{padding:4px 7px; border-radius:0 4px 4px 0; font-size:11.5px; margin-top:4px;}
+  .k{background:var(--green-bg); border-left:3px solid var(--green);} .k b{color:var(--green);}
+  .t{background:var(--red-bg); border-left:3px solid var(--red);} .t b{color:var(--red);}
+  .w{background:var(--amber-bg); border-left:3px solid var(--amber);} .w b{color:var(--amber);}
+  .arrow{color:var(--amber); font-weight:700;}
+  code{background:var(--svc-bg); padding:0 3px; border-radius:2px; font-size:10.5px;}
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .dtable{border:1px solid var(--line); border-radius:8px; background:#fff; overflow:hidden; break-inside:avoid;}
+  .dtable h2{font-size:12.5px; background:var(--ink); color:#fff; padding:6px 10px;}
+  table{width:100%; border-collapse:collapse; font-size:11px;}
+  th,td{text-align:left; padding:4px 9px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:#f3f6fa; color:var(--sub); font-size:10px; text-transform:uppercase; letter-spacing:.3px;}
+  .foot{margin-top:12px; padding-top:9px; border-top:1px solid var(--line);
+    font-size:10.5px; color:var(--sub); text-align:center;}
+  @media print{ body{padding:0; font-size:10px;} @page{margin:.8cm;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>AIP-C01 · Domain 4 <span>Cram Sheet</span></h1>
+  <div class="meta">
+    <strong>Operational Efficiency &amp; Optimization</strong> · <span class="badge">12%</span><br>
+    All sub-skills: 4.1.1 → 4.3.6 &nbsp;|&nbsp; green = key &nbsp; red = trap &nbsp; amber = watch
+  </div>
+</header>
+
+<!-- TASK 4.1 -->
+<div class="task">
+  <h2><span class="tid">4.1</span> Cost optimization and resource efficiency</h2>
+
+  <div class="skill">
+    <h3><span class="sid">4.1.1</span> Token efficiency systems</h3>
+    <span class="svc">token estimation/tracking</span><span class="svc">context window optimization</span><span class="svc">prompt compression</span><span class="svc">context pruning</span><span class="svc">response limiting</span>
+    <div class="k"><b>Key:</b> Cut cost via token tracking, context-window optimization, prompt compression, context pruning and response-size limits (max tokens).</div>
+    <div class="t"><b>Trap:</b> "remove all length limitations" when the requirement specifies a length (e.g. 50-100 words) = wrong; you must set <b>max tokens</b>, not drop it.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.1.2</span> Cost-effective model selection</h3>
+    <span class="svc">cost-capability tradeoff</span><span class="svc">tiered FM usage by complexity</span><span class="svc">price-to-performance</span>
+    <div class="k"><b>Key:</b> Tier models by query complexity (small for routine, large for complex); balance inference cost vs quality. Cheapest customization that solves it: prompt eng &lt; RAG &lt; fine-tune &lt; continued pre-training &lt; from scratch.</div>
+    <div class="t"><b>Trap:</b> "select the cheapest option regardless of baseline latency" = wrong when latency is a requirement. Train-from-scratch is almost always the over-engineered distractor.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.1.3</span> High-performance / max resource utilization</h3>
+    <span class="svc">batching strategies</span><span class="svc">capacity planning</span><span class="svc">auto-scaling</span><span class="svc">Provisioned Throughput optimization</span>
+    <div class="k"><b>Key:</b> Maximize throughput with batching, capacity planning, utilization monitoring, auto-scaling and provisioned-throughput tuning.</div>
+    <div class="w"><b>Watch:</b> Provisioned Throughput over-sized "to absorb the highest expected spike" is expensive — a red flag when cost-effectiveness is required and traffic is spiky.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.1.4</span> Intelligent caching systems</h3>
+    <span class="svc">semantic caching</span><span class="svc">prompt caching</span><span class="svc">result fingerprinting</span><span class="svc">deterministic request hashing</span><span class="svc">edge caching</span>
+    <div class="k"><b>Key:</b> Repeated / near-identical queries (e.g. "35% share identical context") <span class="arrow">→</span> <b>prompt caching / semantic caching</b> to skip re-processing. Pair with <b>latency-optimized inference</b> for low latency + cost.</div>
+    <div class="t"><b>Trap:</b> Repeated-query problems are solved by <b>caching</b>, not by Intelligent Prompt Router (that's for complexity routing) and not by a separate ElastiCache tier when native prompt caching exists.</div>
+  </div>
+</div>
+
+<!-- TASK 4.2 -->
+<div class="task">
+  <h2><span class="tid">4.2</span> Optimize application performance</h2>
+
+  <div class="skill">
+    <h3><span class="sid">4.2.1</span> Responsive systems (latency-cost tradeoff)</h3>
+    <span class="svc">pre-computation</span><span class="svc">latency-optimized Bedrock models</span><span class="svc">parallel requests</span><span class="svc">response streaming</span>
+    <div class="k"><b>Key:</b> Low latency <span class="arrow">→</span> <b>latency-optimized inference</b> + response streaming; pre-compute predictable queries; parallelize complex workflows.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.2.2</span> Retrieval performance</h3>
+    <span class="svc">index optimization</span><span class="svc">query preprocessing</span><span class="svc">hybrid search + custom scoring</span>
+    <div class="k"><b>Key:</b> Improve retrieval relevance/speed with index optimization, query preprocessing and hybrid search with custom scoring.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.2.3</span> Throughput optimization</h3>
+    <span class="svc">token processing optimization</span><span class="svc">batch inference</span><span class="svc">concurrent invocation management</span>
+    <div class="k"><b>Key:</b> Raise throughput via token-processing optimization, batch inference and managed concurrency.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.2.4</span> FM performance (parameter tuning)</h3>
+    <span class="svc">model-specific params</span><span class="svc">A/B testing</span><span class="svc">temperature + top-k/top-p</span>
+    <div class="k"><b>Key:</b> <b>Temperature:</b> low = consistent/factual, mid = balanced (creative + controlled), high = creative. Set <b>max tokens</b> for length. Balance requirement ("creative but controlled") <span class="arrow">→</span> mid values, not extremes.</div>
+    <div class="t"><b>Trap:</b> temperature 0.9 + large top-k when the ask is "controlled/consistent" = too random. temperature 0 when the ask is "variation/creative" = too rigid.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.2.5</span> Efficient resource allocation</h3>
+    <span class="svc">capacity planning (tokens)</span><span class="svc">utilization monitoring</span><span class="svc">auto-scaling for GenAI traffic</span>
+    <div class="k"><b>Key:</b> Plan capacity for token throughput; monitor prompt/completion patterns; auto-scale to GenAI traffic shapes.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.2.6</span> System performance for GenAI workflows</h3>
+    <span class="svc">API call profiling</span><span class="svc">vector DB query optimization</span><span class="svc">LLM latency reduction</span>
+    <div class="k"><b>Key:</b> Profile prompt-completion patterns, optimize vector-DB queries, apply LLM-specific latency reduction and efficient service comms.</div>
+  </div>
+</div>
+
+<!-- TASK 4.3 -->
+<div class="task">
+  <h2><span class="tid">4.3</span> Monitoring systems for GenAI applications</h2>
+
+  <div class="skill">
+    <h3><span class="sid">4.3.1</span> Holistic observability</h3>
+    <span class="svc">operational metrics</span><span class="svc">performance tracing</span><span class="svc">FM interaction tracing</span><span class="svc">custom dashboards</span>
+    <div class="k"><b>Key:</b> Full visibility = operational metrics + performance/FM-interaction tracing + business-impact metrics on custom dashboards.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.3.2</span> Comprehensive GenAI monitoring / KPIs</h3>
+    <span class="svc">CloudWatch (token usage, quality)</span><span class="svc">anomaly detection</span><span class="svc">Bedrock Model Invocation Logs</span><span class="svc">cost anomaly detection</span>
+    <div class="k"><b>Key:</b> Track token usage, prompt effectiveness, hallucination rates, response quality; anomaly detection for token bursts/response drift; <b>Model Invocation Logs</b> for detailed request/response analysis.</div>
+    <div class="w"><b>Watch:</b> Response times climbing under concurrent load <span class="arrow">→</span> check <b>CloudWatch throttling/latency metrics</b> (quota). Inconsistent numeric answers <span class="arrow">→</span> FM math limitation, fix with tool/function calling or lower temperature.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.3.3</span> Integrated observability / audit</h3>
+    <span class="svc">metric dashboards</span><span class="svc">compliance monitoring</span><span class="svc">forensic traceability</span><span class="svc">audit logging</span>
+    <div class="k"><b>Key:</b> Actionable insights = operational dashboards + business visualizations + compliance monitoring + forensic audit logging + interaction tracking.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.3.4</span> Tool performance frameworks</h3>
+    <span class="svc">call pattern tracking</span><span class="svc">tool-calling observability</span><span class="svc">multi-agent coordination tracking</span><span class="svc">usage baselines</span>
+    <div class="k"><b>Key:</b> Track tool call patterns, collect metrics, observe multi-agent coordination, baseline usage for anomaly detection.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.3.5</span> Vector store operational management</h3>
+    <span class="svc">vector DB perf monitoring</span><span class="svc">automated index optimization</span><span class="svc">data quality validation</span>
+    <div class="k"><b>Key:</b> Monitor vector-DB performance, run automated index-optimization routines, validate data quality continuously.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">4.3.6</span> FM-specific troubleshooting frameworks</h3>
+    <span class="svc">golden datasets (hallucination)</span><span class="svc">output diffing</span><span class="svc">reasoning path tracing</span><span class="svc">specialized observability</span>
+    <div class="k"><b>Key:</b> Detect GenAI-only failure modes: golden datasets for hallucination, output diffing for response consistency, reasoning-path tracing for logical errors.</div>
+  </div>
+</div>
+
+<!-- DECISION TABLES -->
+<div class="cols">
+  <div class="dtable">
+    <h2>Cost / latency decisions</h2>
+    <table>
+      <tr><th>Stem says…</th><th>Answer</th></tr>
+      <tr><td>35% queries share identical context / repeated</td><td><b>Prompt / semantic caching</b></td></tr>
+      <tr><td>low latency on Bedrock</td><td><b>latency-optimized inference</b></td></tr>
+      <tr><td>user waits for first token</td><td>response <b>streaming</b></td></tr>
+      <tr><td>route by complexity (same family)</td><td>Intelligent Prompt Router</td></tr>
+      <tr><td>spiky traffic, cost-effective</td><td>On-Demand (not over-provisioned)</td></tr>
+      <tr><td>guaranteed throughput / custom model</td><td>Provisioned Throughput</td></tr>
+      <tr><td>cheapest customization that works</td><td>prompt&lt;RAG&lt;fine-tune&lt;cont-pretrain&lt;scratch</td></tr>
+    </table>
+  </div>
+
+  <div class="dtable">
+    <h2>Inference parameters &amp; troubleshooting</h2>
+    <table>
+      <tr><th>Requirement</th><th>Setting / fix</th></tr>
+      <tr><td>factual / consistent / deterministic</td><td>temperature <b>low</b> (0-0.3)</td></tr>
+      <tr><td>creative but controlled (balance)</td><td>temperature <b>mid</b> (0.4-0.7)</td></tr>
+      <tr><td>max creativity / brainstorm</td><td>temperature <b>high</b> (0.8-1.0)</td></tr>
+      <tr><td>control output length (e.g. 50-100 words)</td><td>set <b>max tokens</b> (never remove)</td></tr>
+      <tr><td>slow under concurrent load</td><td>CloudWatch throttling/quota metrics</td></tr>
+      <tr><td>inconsistent numeric calculations</td><td>tool/function calling; lower temperature</td></tr>
+      <tr><td>detailed prompt+response audit</td><td>Model Invocation Logs</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="foot">
+  <b>Domain 4 golden rule:</b> repeated queries → caching; low latency → latency-optimized + streaming; length limit → max tokens (never remove); pick the cheapest customization/tier that still meets the stated latency/quality bar; and never over-provision throughput for spiky traffic.
+</div>
+
+</div>
+</body>
+</html>

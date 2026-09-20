@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIP-C01 · Domain 1 Cram Sheet (all sub-skills)</title>
+<style>
+  :root{
+    --ink:#16283d; --sub:#4a6180; --line:#dbe3ec; --bg:#fbfcfe;
+    --amber:#a86a12; --amber-bg:#fffaf0;
+    --red:#b53228; --red-bg:#fdf3f2;
+    --green:#186b4a; --green-bg:#eff8f3;
+    --blue:#1f5c9e; --blue-bg:#edf3fa;
+    --svc-bg:#eaeff5; --svc-ink:#2c4360;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.4; font-size:12px; padding:20px;}
+  .wrap{max-width:1240px;margin:0 auto;}
+  header.top{border-bottom:3px solid var(--ink); padding-bottom:10px; margin-bottom:14px;
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:8px;}
+  header.top h1{font-size:21px; letter-spacing:-.3px;}
+  header.top h1 span{color:var(--amber);}
+  header.top .meta{font-size:10.5px; color:var(--sub); text-align:right; line-height:1.5;}
+  .badge{display:inline-block; background:var(--ink); color:#fff; font-size:10.5px;
+    font-weight:700; padding:2px 9px; border-radius:20px;}
+  .task{border:1px solid var(--line); border-radius:8px; background:#fff;
+    margin-bottom:12px; overflow:hidden; break-inside:avoid; page-break-inside:avoid;}
+  .task > h2{font-size:13px; background:var(--blue-bg); color:var(--blue);
+    padding:6px 10px; border-bottom:1px solid var(--line);}
+  .task > h2 .tid{font-family:Consolas,monospace; background:var(--blue); color:#fff;
+    padding:1px 6px; border-radius:4px; font-size:11px; margin-right:7px;}
+  .skill{padding:7px 10px; border-bottom:1px dashed var(--line);}
+  .skill:last-child{border-bottom:none;}
+  .skill h3{font-size:11.5px; color:var(--ink); margin-bottom:4px;}
+  .skill h3 .sid{font-family:Consolas,monospace; background:var(--svc-bg); color:var(--svc-ink);
+    padding:1px 5px; border-radius:3px; font-size:10.5px; margin-right:6px; font-weight:700;}
+  .svc{display:inline-block; background:var(--svc-bg); color:var(--svc-ink);
+    font-size:10.5px; padding:1px 6px; border-radius:3px; margin:2px 3px 2px 0; font-weight:600;}
+  .k,.t,.w{padding:4px 7px; border-radius:0 4px 4px 0; font-size:11.5px; margin-top:4px;}
+  .k{background:var(--green-bg); border-left:3px solid var(--green);}
+  .k b{color:var(--green);}
+  .t{background:var(--red-bg); border-left:3px solid var(--red);}
+  .t b{color:var(--red);}
+  .w{background:var(--amber-bg); border-left:3px solid var(--amber);}
+  .w b{color:var(--amber);}
+  .arrow{color:var(--amber); font-weight:700;}
+  code{background:var(--svc-bg); padding:0 3px; border-radius:2px; font-size:10.5px;}
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .dtable{border:1px solid var(--line); border-radius:8px; background:#fff; overflow:hidden; break-inside:avoid;}
+  .dtable h2{font-size:12.5px; background:var(--ink); color:#fff; padding:6px 10px;}
+  table{width:100%; border-collapse:collapse; font-size:11px;}
+  th,td{text-align:left; padding:4px 9px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:#f3f6fa; color:var(--sub); font-size:10px; text-transform:uppercase; letter-spacing:.3px;}
+  .foot{margin-top:12px; padding-top:9px; border-top:1px solid var(--line);
+    font-size:10.5px; color:var(--sub); text-align:center;}
+  @media print{ body{padding:0; font-size:10px;} @page{margin:.8cm;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>AIP-C01 · Domain 1 <span>Cram Sheet</span></h1>
+  <div class="meta">
+    <strong>FM Integration, Data Management &amp; Compliance</strong> · <span class="badge">31% — largest domain</span><br>
+    All 24 sub-skills: 1.1.1 → 1.6.6 &nbsp;|&nbsp; green = key &nbsp; red = trap &nbsp; amber = watch
+  </div>
+</header>
+
+<!-- TASK 1.1 -->
+<div class="task">
+  <h2><span class="tid">1.1</span> Analyze requirements and design GenAI solutions</h2>
+
+  <div class="skill">
+    <h3><span class="sid">1.1.1</span> Architectural designs aligned to business needs &amp; constraints</h3>
+    <span class="svc">Bedrock</span><span class="svc">integration patterns</span><span class="svc">deployment strategies</span>
+    <div class="k"><b>Key:</b> Pick FM + integration + deployment that match the <b>stated constraints</b> (latency, cost, residency, scale). Every requirement must map to a component.</div>
+    <div class="t"><b>Trap:</b> An answer satisfying 2 of 3 requirements looks complete. Always read the <b>last sentence</b> before the question — the governing constraint (least overhead / real-time / no public internet) usually hides there.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.1.2</span> Technical proof-of-concept before full deployment</h3>
+    <span class="svc">Bedrock</span>
+    <div class="k"><b>Key:</b> Validate feasibility, performance and business value on Bedrock <b>first</b>; full-scale build comes after the PoC proves value.</div>
+    <div class="t"><b>Trap:</b> Choosing a full production build (train / fine-tune / self-host) when the scenario only asks to <b>validate feasibility</b>.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.1.3</span> Standardized components for consistent implementation</h3>
+    <span class="svc">Well-Architected Framework</span><span class="svc">WA Tool — GenAI Lens</span>
+    <div class="k"><b>Key:</b> "consistent across multiple deployment scenarios / business units" <span class="arrow">→</span> standardized reusable components + <b>WA GenAI Lens</b> review.</div>
+    <div class="w"><b>Watch:</b> WA Lens is a <b>review/design</b> tool — it never <i>enforces</i> anything at runtime (that is SCP / IAM / Guardrails).</div>
+  </div>
+</div>
+
+<!-- TASK 1.2 -->
+<div class="task">
+  <h2><span class="tid">1.2</span> Select and configure FMs</h2>
+
+  <div class="skill">
+    <h3><span class="sid">1.2.1</span> Assess and choose FMs (benchmarks, capability, limitations)</h3>
+    <span class="svc">Bedrock Model Evaluation</span><span class="svc">benchmarks</span>
+    <div class="k"><b>Key:</b> Match model size to task — small model = routine, low-latency, cheap; large model = reasoning, creative, in-depth explanation.</div>
+    <div class="t"><b>Trap:</b> <b>Limitation evaluation is the point.</b> Intelligent Prompt Router routes only <b>within one model family</b>. Titan↔Claude, Llama↔Claude, Nova↔Claude are <b>cross-family</b> <span class="arrow">→</span> the native router cannot do it; custom routing is required.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.2.2</span> Dynamic model selection / provider switching without code changes</h3>
+    <span class="svc">AWS AppConfig</span><span class="svc">Lambda</span><span class="svc">API Gateway</span>
+    <div class="k"><b>Key:</b> <b>AppConfig</b> = dynamic config, <b>instant propagation, no redeploy</b>. One Lambda reads routing config and selects the FM at runtime.</div>
+    <div class="t"><b>Trap:</b> "dedicated Lambda per FM" means adding a model touches code (violates "without code modification"). "Update via Console or CLI" = manual, fails hourly-updated metrics. Parameter Store = static config, weaker than AppConfig for frequent change. Lambda authorizer doing business routing = wrong job for the service.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.2.3</span> Resilient AI systems during service disruption</h3>
+    <span class="svc">Step Functions circuit breaker</span><span class="svc">Cross-Region Inference</span><span class="svc">fallback model</span><span class="svc">graceful degradation</span>
+    <div class="k"><b>Key:</b> "avoid single point of failure" <span class="arrow">→</span> look for a <b>fallback model</b>. Cross-Region Inference exists for <b>limited regional availability / resilience</b>.</div>
+    <div class="t"><b>Trap:</b> <b>Cross-Region inference contradicts data residency.</b> If inference must stay in the customer's Region, "cross-Region" or "consolidate into a single centralized deployment" is instantly wrong — deploy per-Region copies instead.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.2.4</span> FM customization deployment &amp; lifecycle management</h3>
+    <span class="svc">SageMaker AI</span><span class="svc">Model Registry</span><span class="svc">LoRA / adapters</span><span class="svc">Custom Model Import</span><span class="svc">Provisioned Throughput</span>
+    <div class="k"><b>Key:</b> Import a fine-tuned HF / Safetensors model <span class="arrow">→</span> <b>Custom Model Import</b>; guaranteed production throughput <span class="arrow">→</span> <b>Provisioned Throughput</b>. Model Registry = versioning + rollback. LoRA = parameter-efficient adaptation.</div>
+    <div class="w"><b>Watch:</b> "production" alone does not mean Provisioned. Provisioned when <b>custom/fine-tuned model</b> OR "specific / guaranteed / consistent throughput". On-Demand when base FM + variable, spiky traffic + cost focus.</div>
+  </div>
+</div>
+
+<!-- TASK 1.3 -->
+<div class="task">
+  <h2><span class="tid">1.3</span> Data validation and processing pipelines for FM consumption</h2>
+
+  <div class="skill">
+    <h3><span class="sid">1.3.1</span> Data validation workflows for quality standards</h3>
+    <span class="svc">Glue Data Quality</span><span class="svc">SageMaker Data Wrangler</span><span class="svc">Lambda</span><span class="svc">CloudWatch metrics</span>
+    <div class="k"><b>Key:</b> Validation = rules that <b>check</b> quality before FM consumption. Data Wrangler = low-code prep and transformation.</div>
+    <div class="t"><b>Trap:</b> "validation rules that <b>check</b> consistency" ≠ "<b>ensure</b> consistent inputs". When the requirement says ensure/create consistency, the answer must actively <b>transform</b> (normalize / reformat), not merely validate.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.3.2</span> Complex / multimodal processing (text, image, audio, tabular)</h3>
+    <span class="svc">Bedrock Data Automation</span><span class="svc">Bedrock multimodal</span><span class="svc">Transcribe</span><span class="svc">SageMaker Processing</span><span class="svc">Textract</span>
+    <div class="k"><b>Key:</b> Documents + audio + video in one managed service <span class="arrow">→</span> <b>BDA</b> (least overhead). BDA structure: <b>one project holding many blueprints</b>; BDA auto-detects the <b>blueprint</b> from the document type.</div>
+    <div class="t"><b>Trap:</b> BDA does <b>not</b> auto-select a <b>project</b> — "three separate projects and BDA picks one" is wrong. A BDA <b>blueprint is an extraction template, not an orchestrator</b>; it cannot drive Rekognition/Bedrock steps (Step Functions does that).</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.3.3</span> Format input data per model-specific requirements</h3>
+    <span class="svc">JSON for Bedrock API</span><span class="svc">SageMaker payloads</span><span class="svc">conversation formatting</span><span class="svc">JSON Schema</span>
+    <div class="k"><b>Key:</b> Evaluation / prompt datasets are <b>JSONL in S3</b>. Dialog apps need conversation-turn formatting. Deterministic structured output <span class="arrow">→</span> JSON Schema.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.3.4</span> Enhance input data quality for better FM responses</h3>
+    <span class="svc">Bedrock reformat text</span><span class="svc">Comprehend entities</span><span class="svc">Lambda normalize</span>
+    <div class="k"><b>Key:</b> Canonical chain <span class="arrow">→</span> <b>Comprehend extracts entities → normalize categories/specs → Bedrock reformats for optimal FM processing</b>. Using an FM to reformat data is an exam-correct pattern.</div>
+    <div class="t"><b>Trap:</b> Do not dismiss "use Bedrock to reformat" as over-engineering. And never <b>strip or standardize away</b> slang, tone or local expressions when tone/intent is the signal — that destroys the data (fine-tuning is the fix there).</div>
+  </div>
+</div>
+
+<!-- TASK 1.4 -->
+<div class="task">
+  <h2><span class="tid">1.4</span> Design and implement vector store solutions</h2>
+
+  <div class="skill">
+    <h3><span class="sid">1.4.1</span> Advanced vector database architectures</h3>
+    <span class="svc">Bedrock Knowledge Bases</span><span class="svc">OpenSearch + Neural plugin</span><span class="svc">Aurora pgvector</span><span class="svc">RDS + S3</span><span class="svc">DynamoDB</span><span class="svc">MemoryDB</span>
+    <div class="k"><b>Key:</b> KB = hierarchical organization + managed store; OpenSearch Neural = topic segmentation; MemoryDB = in-memory, lowest latency.</div>
+    <div class="t"><b>Trap:</b> Index algorithm follows <b>dataset size + accuracy need</b>: small dataset + "highly accurate" <span class="arrow">→</span> <b>Flat (exact)</b>, not HNSW. HNSW = large dataset + approximate/fast. Migrating the whole store to a graph DB is over-engineering.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.4.2</span> Metadata frameworks for search precision</h3>
+    <span class="svc">S3 object metadata</span><span class="svc">custom attributes</span><span class="svc">tagging</span><span class="svc">Kendra metadata</span>
+    <div class="k"><b>Key:</b> Metadata (timestamps, authorship, domain tags) drives <b>filtering</b> and context awareness. Enriching KB documents with metadata beats running separate search pipelines.</div>
+    <div class="w"><b>Watch:</b> "seamlessly integrate" <span class="arrow">→</span> enrich <b>one centralized</b> KB. Phrases like "separate pipelines / independently / stored outside the centralized knowledge base" mark the wrong answers.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.4.3</span> High-performance vector architectures at scale</h3>
+    <span class="svc">OpenSearch sharding</span><span class="svc">multi-index</span><span class="svc">hierarchical indexing</span>
+    <div class="k"><b>Key:</b> Scale via sharding, per-domain multi-index, hierarchical indexing. Prefer <b>horizontal</b> scaling for growth.</div>
+    <div class="t"><b>Trap:</b> Raising embedding dimensions (768 → 4096) "while keeping chunking unchanged" fixes nothing — it grows the index and worsens latency.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.4.4</span> Integration components to connect resources</h3>
+    <span class="svc">KB data source connectors</span><span class="svc">Q Business connectors</span><span class="svc">Kendra</span>
+    <div class="k"><b>Key:</b> Use <b>built-in data source connectors</b> for CMS, wikis and document systems instead of custom ingestion code.</div>
+    <div class="t"><b>Trap:</b> "custom Lambda functions to process and index before importing" = avoidable overhead whenever a connector exists.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.4.5</span> Data maintenance — keeping vector stores current</h3>
+    <span class="svc">automatic synchronization</span><span class="svc">incremental update</span><span class="svc">EventBridge change detection</span><span class="svc">scheduled refresh</span>
+    <div class="k"><b>Key:</b> <b>Automatic sync</b> on the data source = least overhead. Continuous change <span class="arrow">→</span> event-driven / incremental updates, not manual reindexing.</div>
+    <div class="t"><b>Trap:</b> "scheduled reindexing jobs + custom tagging rules each cycle" = high overhead; "periodically" also conflicts with a "continuous updates" requirement.</div>
+  </div>
+</div>
+
+<!-- TASK 1.5 -->
+<div class="task">
+  <h2><span class="tid">1.5</span> Design retrieval mechanisms for FM augmentation</h2>
+
+  <div class="skill">
+    <h3><span class="sid">1.5.1</span> Document segmentation / chunking</h3>
+    <span class="svc">Bedrock KB chunking</span><span class="svc">fixed-size</span><span class="svc">semantic</span><span class="svc">hierarchical</span>
+    <div class="k"><b>Key:</b> <b>Fixed-size</b> = flat simple content. <b>Semantic</b> = split on natural meaning boundaries (fixes fractured context). <b>Hierarchical</b> = parent-child structure (article → paragraph); retrieve the child, pass the parent as context.</div>
+    <div class="t"><b>Trap:</b> Do not swap the two. "fixed 500-token blocks <b>fracture</b> claims and rationale" <span class="arrow">→</span> <b>semantic</b>. "must <b>preserve relationships</b> between articles and their paragraphs / headers" <span class="arrow">→</span> <b>hierarchical</b>. Latency and index-growth figures in the stem are usually bait; the root cause is chunking.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.5.2</span> Embedding solution selection</h3>
+    <span class="svc">Titan Embeddings</span><span class="svc">Bedrock embedding models</span><span class="svc">Lambda batch embedding</span>
+    <div class="k"><b>Key:</b> Choose on <b>dimensionality + domain fit</b>; automate embedding generation for new and updated content.</div>
+    <div class="w"><b>Watch:</b> More dimensions is not better — it costs index size and latency. Re-embed whenever the chunking strategy changes.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.5.3</span> Deploy and configure vector search</h3>
+    <span class="svc">OpenSearch vector search</span><span class="svc">Aurora pgvector</span><span class="svc">KB managed vector store</span>
+    <div class="k"><b>Key:</b> Managed KB vector store = least overhead. OpenSearch / pgvector when you need control or already run that estate.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.5.4</span> Advanced search architectures (relevance &amp; accuracy)</h3>
+    <span class="svc">hybrid search</span><span class="svc">Bedrock reranker models</span><span class="svc">KB reranking</span>
+    <div class="k"><b>Key:</b> <b>Hybrid search</b> = dense semantic + keyword exact-term. <b>Reranking</b> = reorder retrieved chunks by relevance before generation, with no LLM retraining.</div>
+    <div class="t"><b>Trap:</b> If the stem confirms embeddings, chunking and similarity scoring are <b>already correct</b>, the answer is <b>reranking</b> — not bigger chunks, not re-embedding. Higher throughput or speed never fixes contextual quality.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.5.5</span> Query handling systems</h3>
+    <span class="svc">Bedrock query expansion</span><span class="svc">Lambda query decomposition</span><span class="svc">Step Functions query transformation</span>
+    <div class="k"><b>Key:</b> Improve retrieval on the <b>query side</b>: expand vague queries, decompose multi-part questions, transform before search.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.5.6</span> Consistent access mechanisms for FM integration</h3>
+    <span class="svc">function calling</span><span class="svc">MCP clients</span><span class="svc">standardized API patterns</span><span class="svc">RetrieveAndGenerate</span>
+    <div class="k"><b>Key:</b> <b>Retrieve</b> returns chunks only. <b>RetrieveAndGenerate</b> retrieves, generates the answer, and returns <b>citations automatically</b>.</div>
+    <div class="t"><b>Trap:</b> Requirement "must generate responses <b>and cite the authoritative source</b>" <span class="arrow">→</span> <b>RetrieveAndGenerate</b>. Picking plain <b>Retrieve</b> leaves you building generation and citations yourself = extra overhead and a wrong answer.</div>
+  </div>
+</div>
+
+<!-- TASK 1.6 -->
+<div class="task">
+  <h2><span class="tid">1.6</span> Prompt engineering strategies and governance</h2>
+
+  <div class="skill">
+    <h3><span class="sid">1.6.1</span> Model instruction frameworks (control behavior &amp; output)</h3>
+    <span class="svc">Prompt Management — role definitions</span><span class="svc">Guardrails — responsible AI</span><span class="svc">template configs</span>
+    <div class="k"><b>Key:</b> Division of duties — <b>Prompt Management</b> holds roles, templates and response format; <b>Guardrails</b> enforces safety policy.</div>
+    <div class="t"><b>Trap:</b> <b>Guardrails never perform RBAC or model-access control.</b> An option reading "Guardrails enforce safety policies <i>and role-based access controls</i>" is wrong — RBAC belongs to IAM / Prompt Management resource permissions.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.6.2</span> Interactive systems: context and conversation state</h3>
+    <span class="svc">DynamoDB history</span><span class="svc">Step Functions clarification</span><span class="svc">Comprehend intent</span>
+    <div class="k"><b>Key:</b> Conversation history <span class="arrow">→</span> <b>DynamoDB</b>: low latency, concurrent sessions, <b>TTL</b> for auto-expiry, <b>GSI</b> for metadata search and filtering.</div>
+    <div class="w"><b>Watch:</b> "automatically delete conversations when they expire" = <b>DynamoDB TTL</b>. RDS and S3 do not fit low latency plus native expiry.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.6.3</span> Prompt management &amp; governance (consistency + oversight)</h3>
+    <span class="svc">Prompt Management — parameterized templates, versions, approval</span><span class="svc">S3 template repo</span><span class="svc">CloudTrail</span><span class="svc">CloudWatch Logs</span><span class="svc">IAM</span>
+    <div class="k"><b>Key:</b> Templates use <code>{{variables}}</code> filled at runtime. Prompts are <b>account-level resources</b>, so <b>IAM controls who can create, edit and publish versions</b> — that is the real RBAC. Versions are immutable snapshots <span class="arrow">→</span> consistency + audit + approval workflow; CloudTrail records changes and usage.</div>
+    <div class="t"><b>Trap:</b> Check <b>where RBAC is attached</b>. Right = Prompt Management / IAM. Wrong = Guardrails. Building your own Git + Lambda versioning is needless overhead.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.6.4</span> Quality assurance for prompts</h3>
+    <span class="svc">Lambda verify output</span><span class="svc">Step Functions edge cases</span><span class="svc">CloudWatch regression</span>
+    <div class="k"><b>Key:</b> Automated output verification + edge-case tests + a regression gate before promoting a prompt version to production.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.6.5</span> Iterative refinement / advanced prompting</h3>
+    <span class="svc">structured input components</span><span class="svc">output format specifications</span><span class="svc">chain-of-thought</span><span class="svc">feedback loops</span>
+    <div class="k"><b>Key:</b> <b>Structured input</b> <span class="arrow">→</span> stability and predictable formatting. <b>Chain-of-thought</b> <span class="arrow">→</span> consistent reasoning quality across complex documents.</div>
+    <div class="t"><b>Trap:</b> On "Select TWO", pick options covering <b>different needs</b> (one input-structure, one reasoning) rather than two that both address input. Narrative/stylistic polish and terminology glossaries are plausible distractors addressing neither.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">1.6.6</span> Complex prompt systems</h3>
+    <span class="svc">Bedrock Prompt Flows</span><span class="svc">conditional branching</span><span class="svc">reusable components</span><span class="svc">pre/post-processing</span>
+    <div class="k"><b>Key:</b> <b>Prompt Flows</b> = sequential prompt chains, branching on model responses, reusable prompt blocks, integrated pre- and post-processing; also the no-code workflow builder.</div>
+    <div class="w"><b>Watch:</b> Prompt Flows orchestrate <b>prompts</b>. Agentic tool-calling and ReAct loops belong to Agents or Step Functions (Domain 2), not Prompt Flows.</div>
+  </div>
+</div>
+
+<!-- DECISION TABLES -->
+<div class="cols">
+  <div class="dtable">
+    <h2>Chunking · index · retrieval decisions</h2>
+    <table>
+      <tr><th>Stem says…</th><th>Answer</th></tr>
+      <tr><td>fixed-size chunks fracture claims / context</td><td><b>Semantic chunking</b></td></tr>
+      <tr><td>preserve article ↔ paragraph relationships, hierarchy</td><td><b>Hierarchical chunking</b></td></tr>
+      <tr><td>embeddings / chunking / similarity already correct, answers misaligned</td><td><b>Reranking</b></td></tr>
+      <tr><td>semantic meaning + exact keyword matching</td><td><b>Hybrid search</b></td></tr>
+      <tr><td>small dataset + highly accurate + low latency</td><td><b>Flat</b> index (in-memory store)</td></tr>
+      <tr><td>large / growing dataset, speed over exactness</td><td><b>HNSW</b></td></tr>
+      <tr><td>generate an answer <em>and</em> cite the source</td><td><b>RetrieveAndGenerate</b></td></tr>
+    </table>
+  </div>
+
+  <div class="dtable">
+    <h2>Keyword → service map (Domain 1)</h2>
+    <table>
+      <tr><th>Keyword in stem</th><th>Service / feature</th></tr>
+      <tr><td>switch models, no redeploy, instant propagation</td><td><b>AppConfig</b></td></tr>
+      <tr><td>data residency / must stay in Region</td><td>per-Region deploy — <b>never</b> cross-Region inference</td></tr>
+      <tr><td>route by complexity, models in the <em>same</em> family</td><td>Intelligent Prompt Router</td></tr>
+      <tr><td>route across <em>different</em> families (Titan / Llama ↔ Claude)</td><td><b>custom routing</b> in Lambda</td></tr>
+      <tr><td>documents + audio + video, least overhead</td><td><b>Bedrock Data Automation</b> — 1 project, many blueprints</td></tr>
+      <tr><td>consistent inputs for the FM</td><td>Comprehend entities → normalize → <b>Bedrock reformat</b></td></tr>
+      <tr><td>conversation history, concurrent, auto-expire</td><td><b>DynamoDB</b> + TTL + GSI</td></tr>
+      <tr><td>prompt versions, approval workflow, audit trail</td><td><b>Prompt Management</b> + CloudTrail</td></tr>
+      <tr><td>role-based access to prompt templates</td><td><b>IAM</b> on prompt resources — not Guardrails</td></tr>
+      <tr><td>import fine-tuned HF / Safetensors model</td><td><b>Custom Model Import</b> + Provisioned Throughput</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="foot">
+  <b>Golden rule:</b> list every requirement, map each to a component, then eliminate options that (a) miss a requirement, (b) build custom where a native feature exists, (c) put a capability on the wrong service, or (d) contain a phrase contradicting the stem — <em>regardless of latency · without retraining · archival instead of delete · cross-Region under residency · periodic when continuous is required</em>.
+</div>
+
+</div>
+</body>
+</html>

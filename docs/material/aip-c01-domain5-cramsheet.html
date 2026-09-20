@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AIP-C01 · Domain 5 Cram Sheet</title>
+<style>
+  :root{
+    --ink:#16283d; --sub:#4a6180; --line:#dbe3ec; --bg:#fbfcfe;
+    --amber:#a86a12; --amber-bg:#fffaf0;
+    --red:#b53228; --red-bg:#fdf3f2;
+    --green:#186b4a; --green-bg:#eff8f3;
+    --blue:#9a6414; --blue-bg:#fbf3e6;
+    --svc-bg:#eaeff5; --svc-ink:#2c4360;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{font-family:"Segoe UI",-apple-system,BlinkMacSystemFont,sans-serif;
+    color:var(--ink); background:var(--bg); line-height:1.4; font-size:12px; padding:20px;}
+  .wrap{max-width:1240px;margin:0 auto;}
+  header.top{border-bottom:3px solid var(--ink); padding-bottom:10px; margin-bottom:14px;
+    display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:8px;}
+  header.top h1{font-size:21px; letter-spacing:-.3px;}
+  header.top h1 span{color:var(--blue);}
+  header.top .meta{font-size:10.5px; color:var(--sub); text-align:right; line-height:1.5;}
+  .badge{display:inline-block; background:var(--ink); color:#fff; font-size:10.5px;
+    font-weight:700; padding:2px 9px; border-radius:20px;}
+  .task{border:1px solid var(--line); border-radius:8px; background:#fff;
+    margin-bottom:12px; overflow:hidden; break-inside:avoid; page-break-inside:avoid;}
+  .task > h2{font-size:13px; background:var(--blue-bg); color:var(--blue);
+    padding:6px 10px; border-bottom:1px solid var(--line);}
+  .task > h2 .tid{font-family:Consolas,monospace; background:var(--blue); color:#fff;
+    padding:1px 6px; border-radius:4px; font-size:11px; margin-right:7px;}
+  .skill{padding:7px 10px; border-bottom:1px dashed var(--line);}
+  .skill:last-child{border-bottom:none;}
+  .skill h3{font-size:11.5px; color:var(--ink); margin-bottom:4px;}
+  .skill h3 .sid{font-family:Consolas,monospace; background:var(--svc-bg); color:var(--svc-ink);
+    padding:1px 5px; border-radius:3px; font-size:10.5px; margin-right:6px; font-weight:700;}
+  .svc{display:inline-block; background:var(--svc-bg); color:var(--svc-ink);
+    font-size:10.5px; padding:1px 6px; border-radius:3px; margin:2px 3px 2px 0; font-weight:600;}
+  .k,.t,.w{padding:4px 7px; border-radius:0 4px 4px 0; font-size:11.5px; margin-top:4px;}
+  .k{background:var(--green-bg); border-left:3px solid var(--green);} .k b{color:var(--green);}
+  .t{background:var(--red-bg); border-left:3px solid var(--red);} .t b{color:var(--red);}
+  .w{background:var(--amber-bg); border-left:3px solid var(--amber);} .w b{color:var(--amber);}
+  .arrow{color:var(--amber); font-weight:700;}
+  code{background:var(--svc-bg); padding:0 3px; border-radius:2px; font-size:10.5px;}
+  .cols{display:grid; grid-template-columns:1fr 1fr; gap:12px;}
+  .dtable{border:1px solid var(--line); border-radius:8px; background:#fff; overflow:hidden; break-inside:avoid;}
+  .dtable h2{font-size:12.5px; background:var(--ink); color:#fff; padding:6px 10px;}
+  table{width:100%; border-collapse:collapse; font-size:11px;}
+  th,td{text-align:left; padding:4px 9px; border-bottom:1px solid var(--line); vertical-align:top;}
+  th{background:#f3f6fa; color:var(--sub); font-size:10px; text-transform:uppercase; letter-spacing:.3px;}
+  .foot{margin-top:12px; padding-top:9px; border-top:1px solid var(--line);
+    font-size:10.5px; color:var(--sub); text-align:center;}
+  @media print{ body{padding:0; font-size:10px;} @page{margin:.8cm;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="top">
+  <h1>AIP-C01 · Domain 5 <span>Cram Sheet</span></h1>
+  <div class="meta">
+    <strong>Testing, Validation, and Troubleshooting</strong> · <span class="badge">11%</span><br>
+    All sub-skills: 5.1.1 → 5.2.5 &nbsp;|&nbsp; green = key &nbsp; red = trap &nbsp; amber = watch
+  </div>
+</header>
+
+<!-- TASK 5.1 -->
+<div class="task">
+  <h2><span class="tid">5.1</span> Evaluation systems for GenAI</h2>
+
+  <div class="skill">
+    <h3><span class="sid">5.1.1</span> Assessment frameworks (quality metrics)</h3>
+    <span class="svc">relevance</span><span class="svc">factual accuracy</span><span class="svc">consistency</span><span class="svc">fluency</span>
+    <div class="k"><b>Key:</b> Evaluate FM output on relevance, factual accuracy, consistency, fluency — beyond traditional ML metrics. <b>BLEU</b>=translation, <b>ROUGE</b>=summarization, <b>BERTScore</b>=semantic meaning, <b>RAGAS</b>=RAG pipeline.</div>
+    <div class="w"><b>Watch:</b> BLEU/ROUGE = surface n-gram overlap (need a reference); BERTScore = meaning (handles paraphrase). No reference available <span class="arrow">→</span> LLM-as-a-Judge or human eval.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">5.1.2</span> Systematic model evaluation (find optimal config)</h3>
+    <span class="svc">Bedrock Model Evaluations</span><span class="svc">A/B &amp; canary testing</span><span class="svc">multi-model eval</span><span class="svc">robustness metrics</span>
+    <div class="k"><b>Key:</b> <b>Bedrock Model Evaluation</b> for correctness/quality; <b>robustness metrics</b> for "sensitivity to slight input variations / consistency". A/B testing = compare multiple models to select the best.</div>
+    <div class="t"><b>Trap:</b> "quantitative robustness / sensitivity to variations" <span class="arrow">→</span> <b>Model Evaluation robustness metrics</b>, NOT Comprehend similarity, NOT temp-0 + Levenshtein (temp 0 kills variation; Levenshtein = surface only), NOT custom pipelines.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">5.1.3</span> User-centered evaluation</h3>
+    <span class="svc">feedback interfaces</span><span class="svc">rating systems</span><span class="svc">annotation workflows</span>
+    <div class="k"><b>Key:</b> Continuous improvement from user feedback, output rating systems and annotation workflows.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">5.1.4</span> Systematic QA processes</h3>
+    <span class="svc">continuous evaluation</span><span class="svc">regression testing</span><span class="svc">automated quality gates</span>
+    <div class="k"><b>Key:</b> Maintain standards with continuous evaluation, output regression testing and automated quality gates on deployment.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">5.1.5</span> Multi-perspective assessment</h3>
+    <span class="svc">RAG evaluation</span><span class="svc">LLM-as-a-Judge</span><span class="svc">human feedback</span><span class="svc">CreateEvaluationJob API</span>
+    <div class="k"><b>Key:</b> <b>LLM-as-a-Judge</b> = managed evaluator, human-like judgment, scales to thousands, low overhead — for nuance (tone/context) that automated metrics miss. Native via <b>CreateEvaluationJob API</b> with a consistent evaluator model. Mix <b>built-in metrics</b> (correctness/relevance/formality) + <b>custom metrics</b> (company tone/style).</div>
+    <div class="t"><b>Trap:</b> LLM-as-a-Judge done as <b>separate batch jobs + custom judge + Lambda stats</b> = high overhead; native <b>CreateEvaluationJob</b> wins. (Lambda + Spearman for the stats step is fine — the overhead is in generation/eval, not the stat.) Use a <b>human-validated dataset</b> for company-specific eval, not an industry benchmark.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">5.1.6</span> Retrieval quality testing</h3>
+    <span class="svc">relevance scoring</span><span class="svc">context matching</span><span class="svc">retrieval latency</span>
+    <div class="k"><b>Key:</b> Test retrieval with relevance scoring, context-match verification and retrieval-latency measurement.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">5.1.7</span> Agent performance frameworks</h3>
+    <span class="svc">task completion rate</span><span class="svc">tool usage effectiveness</span><span class="svc">Bedrock Agent evaluations</span><span class="svc">reasoning quality</span>
+    <div class="k"><b>Key:</b> Evaluate agents on task-completion rate, tool-usage effectiveness, and reasoning quality across multi-step workflows (Bedrock Agent evaluations).</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">5.1.8</span> Reporting systems</h3>
+    <span class="svc">visualization tools</span><span class="svc">automated reporting</span><span class="svc">model comparison viz</span>
+    <div class="k"><b>Key:</b> Communicate metrics to stakeholders with visualizations, automated reporting and model-comparison views.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">5.1.9</span> Deployment validation</h3>
+    <span class="svc">synthetic user workflows</span><span class="svc">hallucination / semantic-drift checks</span><span class="svc">automated quality checks</span>
+    <div class="k"><b>Key:</b> Maintain reliability during updates with synthetic workflows, AI-specific output validation (hallucination, semantic drift) and consistency checks.</div>
+  </div>
+</div>
+
+<!-- TASK 5.2 -->
+<div class="task">
+  <h2><span class="tid">5.2</span> Troubleshoot GenAI applications</h2>
+
+  <div class="skill">
+    <h3><span class="sid">5.2.1</span> Content handling issues (context window)</h3>
+    <span class="svc">context-window overflow diagnostics</span><span class="svc">dynamic chunking</span><span class="svc">prompt design</span><span class="svc">truncation analysis</span>
+    <div class="k"><b>Key:</b> Incomplete processing <span class="arrow">→</span> diagnose context-window overflow, apply dynamic chunking, optimize prompt design, analyze truncation errors.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">5.2.2</span> FM integration issues (API)</h3>
+    <span class="svc">error logging</span><span class="svc">request validation</span><span class="svc">response analysis</span>
+    <div class="k"><b>Key:</b> Fix API integration problems with error logging, request validation and response analysis.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">5.2.3</span> Prompt engineering problems</h3>
+    <span class="svc">prompt testing frameworks</span><span class="svc">version comparison</span><span class="svc">systematic refinement</span>
+    <div class="k"><b>Key:</b> Improve response quality/consistency with prompt-testing frameworks, version comparison and systematic refinement.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">5.2.4</span> Retrieval system issues</h3>
+    <span class="svc">relevance analysis</span><span class="svc">embedding quality diagnostics</span><span class="svc">drift monitoring</span><span class="svc">chunking/preprocessing remediation</span><span class="svc">reranking</span>
+    <div class="k"><b>Key:</b> Diagnose retrieval by layer — relevance analysis, embedding-quality diagnostics, drift monitoring, chunking/vectorization fixes, vector-search performance. Retrieval fine but ordering off <span class="arrow">→</span> <b>reranking</b>.</div>
+    <div class="t"><b>Trap:</b> Isolate the failing layer: bad retrieval <span class="arrow">→</span> embeddings/chunking; right chunks wrong order <span class="arrow">→</span> reranking; bad generation <span class="arrow">→</span> prompt/grounding. Don't re-chunk when the stem says chunking is already correct.</div>
+  </div>
+
+  <div class="skill">
+    <h3><span class="sid">5.2.5</span> Prompt maintenance issues</h3>
+    <span class="svc">template testing</span><span class="svc">CloudWatch Logs (prompt confusion)</span><span class="svc">X-Ray (observability)</span><span class="svc">schema validation</span>
+    <div class="k"><b>Key:</b> Continuously improve prompts with template testing, CloudWatch Logs to diagnose prompt confusion, X-Ray observability, schema validation for format drift.</div>
+  </div>
+</div>
+
+<!-- DECISION TABLES -->
+<div class="cols">
+  <div class="dtable">
+    <h2>Evaluation method decision</h2>
+    <table>
+      <tr><th>Stem says…</th><th>Method</th></tr>
+      <tr><td>translation quality</td><td><b>BLEU</b></td></tr>
+      <tr><td>summarization quality</td><td><b>ROUGE</b></td></tr>
+      <tr><td>semantic / paraphrase similarity</td><td><b>BERTScore</b></td></tr>
+      <tr><td>evaluate a RAG pipeline</td><td><b>RAGAS</b> / RAG evaluation</td></tr>
+      <tr><td>nuance/tone, scale to thousands, low overhead</td><td><b>LLM-as-a-Judge</b> (CreateEvaluationJob)</td></tr>
+      <tr><td>experts who work for the company must judge</td><td>Human eval + <b>own work team</b> (Cognito)</td></tr>
+      <tr><td>sensitivity to slight input variations</td><td><b>robustness metrics</b></td></tr>
+      <tr><td>compare models, pick the best</td><td><b>A/B testing</b></td></tr>
+    </table>
+  </div>
+
+  <div class="dtable">
+    <h2>Deploy strategy &amp; troubleshooting</h2>
+    <table>
+      <tr><th>Need</th><th>Answer</th></tr>
+      <tr><td>compare multiple model versions to choose</td><td><b>A/B testing</b></td></tr>
+      <tr><td>safe rollout of one new model, gradual</td><td>Canary / Linear</td></tr>
+      <tr><td>instant switch + fast rollback, zero downtime</td><td>Blue/Green</td></tr>
+      <tr><td>train good but validation poor, unseen data</td><td>overfitting → regularization + data augmentation</td></tr>
+      <tr><td>minority class missed, high false negatives</td><td>class imbalance → SMOTE (oversample minority)</td></tr>
+      <tr><td>time-series forecast, shared pattern, new item</td><td><b>DeepAR</b></td></tr>
+      <tr><td>right chunks, wrong order</td><td><b>reranking</b></td></tr>
+      <tr><td>company-specific eval dataset</td><td>human-validated (not industry benchmark)</td></tr>
+    </table>
+  </div>
+</div>
+
+<div class="foot">
+  <b>Domain 5 golden rule:</b> pick the metric that matches the task (BLEU/ROUGE/BERTScore/RAGAS); LLM-as-a-Judge for nuance at scale via native CreateEvaluationJob; A/B to compare-and-select vs Canary/Blue-Green/Linear to safely roll out; and when troubleshooting retrieval, isolate the failing layer before choosing a fix.
+</div>
+
+</div>
+</body>
+</html>
