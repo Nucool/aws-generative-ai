@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AIP-C01 Knowledge Share — AWS Certified GenAI Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0e1826; --bg-alt:#0a1220; --surface:#152238; --surface-2:#1b2c48;
+    --border:rgba(159,176,199,0.16); --text:#edf1f7; --text-dim:#9fb0c7; --text-faint:#5e7392;
+    --accent:#e8871e; --accent-soft:rgba(232,135,30,0.13);
+    --sans:'IBM Plex Sans',-apple-system,sans-serif; --mono:'IBM Plex Mono',ui-monospace,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);overflow:hidden;}
+  .icon{width:1em;height:1em;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+
+  #deck{position:relative;width:100vw;height:100vh;}
+  .progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);z-index:20;transition:width .35s ease;}
+  .topbar{position:fixed;top:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;
+    padding:22px 34px 0;z-index:10;pointer-events:none;font-family:var(--mono);font-size:12px;color:var(--text-faint);}
+  .nav{position:fixed;bottom:26px;right:34px;display:flex;align-items:center;gap:14px;z-index:20;
+    font-family:var(--mono);font-size:12px;color:var(--text-dim);}
+  .nav button{width:38px;height:38px;border-radius:50%;border:1px solid var(--border);background:var(--surface);
+    color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:center;
+    transition:border-color .15s ease,background .15s ease;}
+  .nav button:hover{border-color:var(--accent);background:var(--surface-2);}
+  .nav button:disabled{opacity:.3;cursor:default;}
+  .nav button:disabled:hover{border-color:var(--border);background:var(--surface);}
+  .counter{min-width:52px;text-align:center;}
+  .clickzone{position:fixed;top:0;bottom:0;width:14%;z-index:5;cursor:pointer;}
+  .clickzone.left{left:0;} .clickzone.right{right:0;}
+
+  .slide{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;align-items:center;
+    text-align:center;padding:84px 6vw 82px;opacity:0;pointer-events:none;transform:translateY(6px);
+    transition:opacity .38s ease, transform .38s ease;}
+  .slide.active{opacity:1;pointer-events:auto;transform:translateY(0);}
+  @media (prefers-reduced-motion:reduce){.slide{transition:none;}}
+  .wrap{width:100%;max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;}
+
+  .slide .eyebrow{font-family:var(--mono);font-size:20px;color:var(--accent);margin:0 0 14px;
+    display:flex;align-items:center;justify-content:center;gap:10px;}
+  .slide .eyebrow .num{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;
+    padding:0 7px;border-radius:12px;border:1px solid var(--accent);font-size:12px;}
+  /* h1{font-size:clamp(30px,4.4vw,56px);line-height:1.08;margin:0 auto 18px;font-weight:600;letter-spacing:-0.01em;max-width:18ch;}
+  h2{font-size:clamp(24px,3vw,38px);line-height:1.14;margin:0 auto 16px;font-weight:600;letter-spacing:-0.01em;max-width:24ch;} */
+  h1{font-size:clamp(30px,4.4vw,46px);line-height:1.08;margin:0 auto 18px;font-weight:600;letter-spacing:-0.01em;}
+  h2{font-size:clamp(24px,3vw,30px);line-height:1.14;margin:0 auto 16px;font-weight:600;letter-spacing:-0.01em;}
+  .lede{font-size:clamp(16px,1.5vw,24px);color:var(--text-dim);line-height:1.55;margin:0 auto 8px;}
+  .lede b{color:var(--text);font-weight:600;}
+
+  ul.points{list-style:none;margin:16px auto 0;padding:0;display:flex;flex-direction:column;gap:11px;
+    text-align:left;}
+  ul.points li{padding-left:20px;position:relative;color:var(--text);font-size:18px;line-height:1.5;}
+  ul.points li::before{content:"";position:absolute;left:0;top:8px;width:6px;height:6px;border-radius:50%;background:var(--accent);}
+  ul.points b{color:var(--text);font-weight:600;}
+
+  .label{font-family:var(--mono);font-size:12px;color:var(--text-faint);margin:22px 0 8px;align-self:center;}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;}
+  .tags span{font-family:var(--mono);font-size:12px;color:var(--text-dim);border:1px solid var(--border);
+    padding:5px 10px;border-radius:3px;background:var(--surface);}
+
+  /* capabilities grid */
+  .caps{display:grid;gap:12px 30px;margin:14px auto 0;text-align:left;}
+  .caps .cap{display:flex;gap:12px;align-items:baseline;font-size:18px;color:var(--text-dim);line-height:1.45;}
+  .caps .cap .n{font-family:var(--mono);color:var(--accent);font-size:13px;min-width:18px;}
+  .caps .cap b{color:var(--text);font-weight:600;}
+
+  /* weight bars */
+  .bars{width:100%;max-width:720px;margin:14px auto 0;display:flex;flex-direction:column;gap:15px;text-align:left;}
+  .bar-row{display:flex;flex-direction:column;gap:7px;}
+  .bar-row .bl{display:flex;justify-content:space-between;gap:14px;font-size:15px;color:var(--text);}
+  .bar-row .bl .pct{font-family:var(--mono);color:var(--accent);white-space:nowrap;}
+  .bar-track{height:9px;background:var(--surface);border:1px solid var(--border);border-radius:5px;overflow:hidden;}
+  .bar-fill{height:100%;background:var(--accent);}
+
+  /* diagram */
+  .diagram{width:100%;max-width:940px;margin:8px auto 0;}
+  .diagram .box{fill:var(--surface);stroke:var(--border);}
+  .diagram .box-accent{fill:var(--accent-soft);stroke:var(--accent);}
+  .diagram text{fill:var(--text);font-family:var(--mono);font-size:12px;}
+  .diagram text.sub{fill:var(--text-dim);font-size:10.5px;}
+  .diagram .arrow{stroke:var(--text-faint);stroke-width:1.6;fill:none;}
+  .diagram .arrow-accent{stroke:var(--accent);stroke-width:1.8;fill:none;}
+  .caption{font-family:var(--mono);font-size:13px;color:var(--text-faint);margin-top:16px;max-width:72ch;}
+
+  .closing-q{font-size:clamp(21px,2.5vw,29px);font-weight:500;line-height:1.4;margin:0 auto 16px;color:var(--text);}
+  .closing-q::before{content:"— ";color:var(--accent);}
+
+  footer.meta{margin-top:24px;font-family:var(--mono);font-size:12px;color:var(--text-faint);}
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="topbar">
+  <span>GenAI on AWS · AIP-C01 Knowledge Share</span>
+  <span>Solution Architect &amp; SA/Dev team</span>
+</div>
+
+<div id="deck">
+
+  <!-- 1 TITLE -->
+  <section class="slide">
+    <div class="wrap">
+      <p class="eyebrow">Knowledge Sharing</p>
+      <h1>AWS Certified GenAI Developer – Professional</h1>
+      <p class="lede">What the certification covers — and what it means for how we build GenAI on AWS.</p>
+      <footer class="meta">Nop, Solution Architect · AIP-C01</footer>
+    </div>
+  </section>
+
+  <!-- 2 INTRODUCTION -->
+  <section class="slide">
+    <div class="wrap">
+      <p class="eyebrow">Introduction</p>
+      <h2>What this certification is about</h2>
+      <p class="lede">At its core: <b>integrating foundation models into real applications and business workflows</b> — putting GenAI into production on AWS.</p>
+      <ul class="points">
+        <li>The role it targets: a GenAI developer who puts FMs to work in real systems — <b>not</b> someone training models from scratch.</li>
+        <li>The emphasis is <b>practical</b> — implementing GenAI solutions into production environments using AWS technologies.</li>
+        <li>The underlying stance: the FM is one <b>component</b> inside a larger system — not the whole system.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 3 WHAT IT VALIDATES -->
+  <section class="slide">
+    <div class="wrap">
+      <p class="eyebrow">What it validates</p>
+      <h2>Eight capabilities you're expected to have</h2>
+      <div class="caps">
+        <div class="cap"><span class="n">1</span><span><b>Design &amp; build</b> with vector stores, RAG, knowledge bases, and other GenAI architectures</span></div>
+        <div class="cap"><span class="n">2</span><span><b>Integrate FMs</b> into applications and business workflows</span></div>
+        <div class="cap"><span class="n">3</span><span><b>Prompt engineering</b> &amp; prompt management</span></div>
+        <div class="cap"><span class="n">4</span><span><b>Implement agentic AI</b> solutions</span></div>
+        <div class="cap"><span class="n">5</span><span><b>Optimize</b> for cost, performance, and business value</span></div>
+        <div class="cap"><span class="n">6</span><span><b>Security, governance</b> &amp; Responsible AI</span></div>
+        <div class="cap"><span class="n">7</span><span><b>Troubleshoot, monitor</b> &amp; optimize GenAI applications</span></div>
+        <div class="cap"><span class="n">8</span><span><b>Evaluate FMs</b> for quality and responsibility</span></div>
+      </div>
+      <p class="caption">A useful checklist for what our team needs if we take GenAI seriously.</p>
+    </div>
+  </section>
+
+  <!-- 4 FIVE DOMAINS -->
+  <section class="slide">
+    <div class="wrap">
+      <p class="eyebrow">The map</p>
+      <h2>Five domains</h2>
+      <div class="bars">
+        <div class="bar-row"><div class="bl"><span>1 · Foundation Model Integration, Data Management &amp; Compliance</span><span class="pct">31%</span></div><div class="bar-track"><div class="bar-fill" style="width:31%"></div></div></div>
+        <div class="bar-row"><div class="bl"><span>2 · Implementation &amp; Integration</span><span class="pct">26%</span></div><div class="bar-track"><div class="bar-fill" style="width:26%"></div></div></div>
+        <div class="bar-row"><div class="bl"><span>3 · AI Safety, Security &amp; Governance</span><span class="pct">20%</span></div><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div></div>
+        <div class="bar-row"><div class="bl"><span>4 · Operational Efficiency &amp; Optimization</span><span class="pct">12%</span></div><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div></div>
+        <div class="bar-row"><div class="bl"><span>5 · Testing, Validation &amp; Troubleshooting</span><span class="pct">11%</span></div><div class="bar-track"><div class="bar-fill" style="width:11%"></div></div></div>
+      </div>
+      <p class="caption">The weighting shows where the exam — and real project effort — concentrates.</p>
+    </div>
+  </section>
+
+  <!-- 5 DOMAIN 1 -->
+  <section class="slide">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">1</span>Domain 1 · 31%</p>
+      <h2>Foundation Model Integration, Data Management &amp; Compliance</h2>
+      <p class="lede"><b>Focus:</b> choose and integrate the right FM, prepare and manage data for it, and build the retrieval stack (RAG, vector stores) plus prompt governance.</p>
+      <p class="label">KEY SKILLS</p>
+      <ul class="points">
+        <li>Analyze requirements &amp; design GenAI solutions (POC, Well-Architected GenAI Lens)</li>
+        <li>Select &amp; configure FMs (benchmarks, model switching, resilience, fine-tuned lifecycle)</li>
+        <li>Data validation &amp; processing pipelines (quality, multimodal, formatting, enrichment)</li>
+        <li>Vector stores &amp; retrieval (chunking, embeddings, vector/hybrid search + rerank)</li>
+        <li>Prompt engineering &amp; governance (templates, versioning, QA, prompt flows)</li>
+      </ul>
+      <p class="label">RELATED SERVICES</p>
+      <div class="tags"><span>Amazon Bedrock</span><span>Bedrock Knowledge Bases</span><span>Bedrock Prompt Management</span><span>Bedrock Prompt Flows</span><span>Amazon Titan</span><span>OpenSearch Service</span><span>Aurora (pgvector)</span><span>DynamoDB</span><span>Amazon S3</span><span>SageMaker AI</span><span>SageMaker Data Wrangler</span><span>AWS Glue</span><span>Amazon Comprehend</span><span>Well-Architected Tool</span></div>
+    </div>
+  </section>
+
+  <!-- 6 DOMAIN 2 -->
+  <section class="slide">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">2</span>Domain 2 · 26%</p>
+      <h2>Implementation &amp; Integration</h2>
+      <p class="lede"><b>Focus:</b> turn an FM into a multi-step system connected to real enterprise systems — agentic AI, tool/MCP, deployment, API &amp; enterprise integration, CI/CD.</p>
+      <p class="label">KEY SKILLS</p>
+      <ul class="points">
+        <li>Agentic AI &amp; tool integration (memory/state, ReAct, safeguards, MCP servers)</li>
+        <li>Model deployment strategy (on-demand vs provisioned, containers/GPU, cascading)</li>
+        <li>Enterprise integration (legacy/API, event-driven, hybrid/edge, CI/CD + GenAI gateway)</li>
+        <li>FM API integration (sync/async, streaming, resilience/backoff, model routing)</li>
+        <li>Application integration &amp; dev tools (streaming APIs, Amplify UI, Amazon Q Developer)</li>
+      </ul>
+      <p class="label">RELATED SERVICES</p>
+      <div class="tags"><span>Bedrock AgentCore</span><span>Step Functions</span><span>Lambda</span><span>API Gateway</span><span>EventBridge</span><span>Amazon ECS</span><span>Amazon SQS</span><span>SageMaker AI</span><span>AWS Outposts</span><span>AWS Wavelength</span><span>CodePipeline</span><span>CodeBuild</span><span>AWS Amplify</span><span>Amazon Q Developer</span><span>AWS X-Ray</span><span>IAM</span></div>
+    </div>
+  </section>
+
+  <!-- 7 DOMAIN 3 -->
+  <section class="slide">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">3</span>Domain 3 · 20%</p>
+      <h2>AI Safety, Security &amp; Governance</h2>
+      <p class="lede"><b>Focus:</b> control FM input/output, protect data and privacy, and put governance + Responsible AI in place — essential in regulated finance.</p>
+      <p class="label">KEY SKILLS</p>
+      <ul class="points">
+        <li>Input/output safety (guardrails, moderation, grounding, injection/jailbreak detection)</li>
+        <li>Data security &amp; privacy (VPC isolation, IAM, PII detect/mask, retention)</li>
+        <li>Governance &amp; compliance (model cards, data lineage, audit logs, bias-drift monitoring)</li>
+        <li>Responsible AI (transparency/reasoning traces, fairness evaluation, policy compliance)</li>
+      </ul>
+      <p class="label">RELATED SERVICES</p>
+      <div class="tags"><span>Bedrock Guardrails</span><span>Amazon Comprehend</span><span>Amazon Macie</span><span>AWS Lake Formation</span><span>Amazon VPC</span><span>IAM</span><span>AWS CloudTrail</span><span>Amazon CloudWatch</span><span>AWS Glue (Data Catalog)</span><span>SageMaker AI</span><span>SageMaker Clarify</span><span>Amazon S3 (Lifecycle)</span><span>Bedrock Knowledge Bases</span></div>
+    </div>
+  </section>
+
+  <!-- 8 DOMAIN 4 -->
+  <section class="slide">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">4</span>Domain 4 · 12%</p>
+      <h2>Operational Efficiency &amp; Optimization</h2>
+      <p class="lede"><b>Focus:</b> manage the token-based cost model and the performance of GenAI workloads, plus monitoring built specifically for GenAI.</p>
+      <p class="label">KEY SKILLS</p>
+      <ul class="points">
+        <li>Cost optimization (token efficiency, model tiering, batching, caching)</li>
+        <li>Application performance (latency-cost tradeoffs, retrieval perf, parameter tuning)</li>
+        <li>GenAI monitoring (token usage, hallucination, drift, model invocation logs)</li>
+      </ul>
+      <p class="label">RELATED SERVICES</p>
+      <div class="tags"><span>Amazon CloudWatch</span><span>Bedrock (provisioned throughput)</span><span>Bedrock (latency-optimized)</span><span>Bedrock Model Invocation Logs</span><span>AWS Cost Explorer</span><span>AWS Cost Anomaly Detection</span><span>AWS Auto Scaling</span><span>Amazon Managed Grafana</span><span>Amazon ElastiCache</span></div>
+    </div>
+  </section>
+
+  <!-- 9 DOMAIN 5 -->
+  <section class="slide">
+    <div class="wrap">
+      <p class="eyebrow"><span class="num">5</span>Domain 5 · 11%</p>
+      <h2>Testing, Validation &amp; Troubleshooting</h2>
+      <p class="lede"><b>Focus:</b> evaluate non-deterministic FM output (quality, RAG, agents) and troubleshoot the failure modes unique to GenAI.</p>
+      <p class="label">KEY SKILLS</p>
+      <ul class="points">
+        <li>Evaluation systems (quality metrics, Bedrock Model Evaluations, A/B &amp; canary, RAG eval + LLM-as-a-Judge, agent performance)</li>
+        <li>User feedback &amp; QA (feedback interfaces, regression tests, deployment validation)</li>
+        <li>Troubleshooting (context overflow, API issues, prompt problems, retrieval issues)</li>
+      </ul>
+      <p class="label">RELATED SERVICES</p>
+      <div class="tags"><span>Bedrock Model Evaluations</span><span>Amazon Bedrock (LLM-as-a-Judge)</span><span>CloudWatch Logs Insights</span><span>AWS X-Ray</span><span>CloudWatch Synthetics</span><span>Amazon Augmented AI (A2I)</span><span>SageMaker Ground Truth</span></div>
+    </div>
+  </section>
+
+  <!-- 10 HOW IT FITS -->
+  <section class="slide">
+    <div class="wrap">
+      <p class="eyebrow">How it fits together</p>
+      <h2>Five domains, one lifecycle</h2>
+      <svg class="diagram" viewBox="0 0 940 170" style="max-width:900px;">
+        <g font-family="IBM Plex Mono">
+          <rect class="box" x="8"   y="46" width="150" height="58" rx="4"/><text x="83"  y="72" text-anchor="middle">Data &amp; FM</text><text class="sub" x="83"  y="90" text-anchor="middle">Domain 1</text>
+          <rect class="box" x="204" y="46" width="150" height="58" rx="4"/><text x="279" y="72" text-anchor="middle">Implementation</text><text class="sub" x="279" y="90" text-anchor="middle">Domain 2</text>
+          <rect class="box" x="400" y="46" width="150" height="58" rx="4"/><text x="475" y="72" text-anchor="middle">Safety gate</text><text class="sub" x="475" y="90" text-anchor="middle">Domain 3</text>
+          <rect class="box" x="596" y="46" width="150" height="58" rx="4"/><text x="671" y="72" text-anchor="middle">Cost &amp; perf</text><text class="sub" x="671" y="90" text-anchor="middle">Domain 4</text>
+          <rect class="box-accent" x="792" y="46" width="150" height="58" rx="4"/><text x="867" y="72" text-anchor="middle">Evaluation</text><text class="sub" x="867" y="90" text-anchor="middle">Domain 5</text>
+          <path class="arrow" d="M158 75 H202" marker-end="url(#a5)"/>
+          <path class="arrow" d="M354 75 H398" marker-end="url(#a5)"/>
+          <path class="arrow" d="M550 75 H594" marker-end="url(#a5)"/>
+          <path class="arrow" d="M746 75 H790" marker-end="url(#a5)"/>
+          <path class="arrow-accent" d="M867 104 V140 H83 V104" marker-end="url(#a5acc)"/>
+          <text class="sub" x="475" y="158" text-anchor="middle" fill="#e8871e">evaluation loops back to improve data, models &amp; prompts</text>
+        </g>
+        <defs>
+          <marker id="a5" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 Z" fill="#5e7392"/></marker>
+          <marker id="a5acc" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L7,4 L0,8 Z" fill="#e8871e"/></marker>
+        </defs>
+      </svg>
+      <p class="caption">The certification is really a map of everything you must think through to put GenAI into production.</p>
+    </div>
+  </section>
+
+  <!-- 11 Q&A -->
+  <section class="slide">
+    <div class="wrap">
+      <p class="eyebrow">Discussion</p>
+      <h2>Q&amp;A</h2>
+      <p class="closing-q">Which domain should we go deep on first?</p>
+      <p class="closing-q">Which of our use cases touches several domains at once?</p>
+    </div>
+  </section>
+
+</div>
+
+<div class="clickzone left" id="zoneLeft" aria-hidden="true"></div>
+<div class="clickzone right" id="zoneRight" aria-hidden="true"></div>
+
+<div class="nav">
+  <button id="prevBtn" aria-label="Previous slide"><svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <span class="counter"><span id="cur">1</span> / <span id="total"></span></span>
+  <button id="nextBtn" aria-label="Next slide"><svg class="icon" viewBox="0 0 24 24" style="width:16px;height:16px;"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+
+<script>
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const total = slides.length;
+  let i = 0;
+  const cur = document.getElementById('cur');
+  const totalEl = document.getElementById('total');
+  const progress = document.getElementById('progress');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  totalEl.textContent = total;
+  function render(){
+    slides.forEach((s,idx)=>s.classList.toggle('active', idx===i));
+    cur.textContent = i+1;
+    progress.style.width = ((i+1)/total*100) + '%';
+    prevBtn.disabled = i===0;
+    nextBtn.disabled = i===total-1;
+    history.replaceState(null,'','#'+(i+1));
+  }
+  function go(d){ const n=i+d; if(n>=0&&n<total){ i=n; render(); } }
+  prevBtn.addEventListener('click',()=>go(-1));
+  nextBtn.addEventListener('click',()=>go(1));
+  document.getElementById('zoneLeft').addEventListener('click',()=>go(-1));
+  document.getElementById('zoneRight').addEventListener('click',()=>go(1));
+  window.addEventListener('keydown',e=>{
+    if(['ArrowRight','PageDown',' '].includes(e.key)){go(1);e.preventDefault();}
+    if(['ArrowLeft','PageUp'].includes(e.key)){go(-1);e.preventDefault();}
+    if(e.key==='Home'){i=0;render();}
+    if(e.key==='End'){i=total-1;render();}
+  });
+  const hash=parseInt(location.hash.replace('#',''),10);
+  if(hash&&hash>=1&&hash<=total){ i=hash-1; }
+  render();
+</script>
+</body>
+</html>
